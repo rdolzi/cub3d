@@ -9,9 +9,17 @@ FLAGS = -Wextra -Werror -Wall
 
 CC = gcc ${FLAGS}
 RM = rm -f
-
+OS = $(shell uname)
 OBJS = ${SRCS:.c=.o} ${GNL:.c=.o} ${PARSER:.c=.o} ${LBFT:.c=.o} 
 
+%.o: %.c
+	@if [ $(OS) = "Darwin" ]; then \
+		$(CC) -g -Imlx -O3 -I ./cub3d.h  -c $< -o $@;\
+    else \
+		$(CC) -g -I/usr/include -Imlx_linux -I ./cub3d.h -c $< -o $@;\
+    fi
+	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
+	@printf "$(BOLD)$(GREEN)\r%100s\r[%d/%d] 😊(%d%%) $(END)$(BOLD)$(BLUE)$<" "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
 
 RED		=	\033[31m
 GREEN	=	\033[32m
@@ -26,23 +34,30 @@ SRC_COUNT     = 0
 SRC_COUNT_TOT = 34
 SRC_PCT       = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
 
-%.o: %.c
-	$(CC) -Imlx -g -c $< -o ${<:.c=.o}
-	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
-	@printf "$(BOLD)$(GREEN)\r%100s\r[%d/%d] 😊(%d%%) $(END)$(BOLD)$(BLUE)$<" "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
-
 		
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 	@printf "$(UNDER)$(BOLD)$(CYAN)\nCompiling CUB3D\n$(RESET)$(BOLD)"
+	@if [ $(OS) = "Darwin" ]; then\
+		make mac;\
+	else\
+		make linux;\
+	fi
+
+mac: 
+	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME);\
+
+linux: 
+	@(make -C ./mlx_linux/) 2> /dev/null \
+	$(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME);\
 
 all: $(NAME)
 
 clean:
-	${RM} ${OBJS}
+	@make -C ./mlx/ clean
+	@${RM} ${OBJS}
 
 fclean: clean
-	${RM} ${NAME}
+	@${RM} ${NAME}
 	
 re: fclean all
 

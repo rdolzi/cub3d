@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flaviobiondo <flaviobiondo@student.42.f    +#+  +:+       +#+        */
+/*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 14:00:25 by flaviobiond       #+#    #+#             */
-/*   Updated: 2023/11/16 22:42:34 by flaviobiond      ###   ########.fr       */
+/*   Updated: 2023/11/21 17:55:22 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 # define CUB3D_H
 
 # include "mlx/mlx.h"
+# include "mlx_linux/mlx.h"
 # include <stdint.h>
 # include <string.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-// # include "mlx_linux/mlx.h"
 # include "libft/libft.h"
 # include "getnextline/get_next_line.h"
 # include <fcntl.h>
