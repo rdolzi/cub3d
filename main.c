@@ -3,96 +3,87 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: flaviobiondo <flaviobiondo@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/10 18:15:36 by vpalacio          #+#    #+#             */
-/*   Updated: 2023/10/16 01:25:52 by rdolzi           ###   ########.fr       */
+/*   Created: 2023/10/06 13:59:53 by flaviobiond       #+#    #+#             */
+/*   Updated: 2023/11/16 22:32:49 by flaviobiond      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include "so_long.h"
-#include <stdlib.h>
-#include <unistd.h>
+#include "cub3d.h"
 
-// int	fai_cose(int keycode, t_game *ciao)
-// {
-// 	if (keycode == S)
-// 	{
-// 		ciao->y +=50;
-// 		mlx_put_image_to_window(ciao->mlx, ciao->mlx_window, ciao->image, ciao->x, ciao->y);
-// 	}
-// 	if (keycode == D)
-// 	{
-// 		ciao->x +=50;
-// 		mlx_put_image_to_window(ciao->mlx, ciao->mlx_window, ciao->image, ciao->x, ciao->y);
-// 	}
-// 	if (keycode == W)
-// 	{
-// 		ciao->y -=50;
-// 		mlx_put_image_to_window(ciao->mlx, ciao->mlx_window, ciao->image, ciao->x, ciao->y);
-// 	}
-// 	if (keycode == A)
-// 	{
-// 		ciao->x -=50;
-// 		mlx_put_image_to_window(ciao->mlx, ciao->mlx_window, ciao->image, ciao->x, ciao->y);
-// 	}
-// 	else if (keycode == ESC)
-// 		exit(write(1, "Player left the game!", 21) * 0);
-// 	return (0);
-// }
 
-// int	exit_x(void)
-// {
-// 	write(1, "Player exited the game!", 23);
-// 	exit (0);
-// } 
 
-// int	main(void)
-// {
-// 	t_game	pippo;
-// 	void	*sakura;
-// 	void	*baby;
-// 	void	*byebye;
-// 	int		i;
-// 	int		j;
+void init_mlx(t_cub3d *cub3d)
+{
+     cub3d->mlx =  mlx_init();
+    cub3d->mlx_win = mlx_new_window(cub3d->mlx, 500, 500, "CUB3D" );
+    cub3d->minimap.img.img = mlx_new_image(cub3d->mlx, cub3d->env.x * 11,
+			cub3d->env.y * 11);
+    cub3d->minimap.img.addr = mlx_get_data_addr(cub3d->minimap.img.img,
+			&cub3d->minimap.img.bits_per_pixel, &cub3d->minimap.img.line_length,
+			&cub3d->minimap.img.endian);
+    mlx_loop(cub3d->mlx);
+}
+void ft_parser(t_data *game, int ac, char *av)
+{
+     ft_check_input(game, ac, av);
+     parser_cub(game, av);
+     check_map(game);
+}
+void	ft_free_mat(char **mat)
+{
 
-// 	pippo.x = 100;
-// 	pippo.y = 100;
-// 	pippo.mlx = mlx_init();
-// 	pippo.mlx_window = mlx_new_window(pippo.mlx, 1200, 1000, "so_long");
-// 	pippo.image = mlx_xpm_file_to_image(pippo.mlx, "images/player.xpm", &i, &j);
-// 	mlx_put_image_to_window(pippo.mlx, pippo.mlx_window, pippo.image, 30, 30);
-// 	mlx_put_image_to_window(pippo.mlx, pippo.mlx_window, pippo.image, 100, 104);
-// 	sakura = mlx_xpm_file_to_image(pippo.mlx, "images/sakura.xpm", &i, &j);
-// 	mlx_put_image_to_window(pippo.mlx, pippo.mlx_window, sakura, 200, 100);
-// 	baby = mlx_xpm_file_to_image(pippo.mlx, "images/baby.xpm", &i, &j);
-// 	mlx_put_image_to_window(pippo.mlx, pippo.mlx_window, baby, 300, 500);
-// 	byebye = mlx_xpm_file_to_image(pippo.mlx, "images/byebye.xpm", &i, &j);
-// 	mlx_put_image_to_window(pippo.mlx, pippo.mlx_window, byebye, 500, 400);
-// 	mlx_key_hook(pippo.mlx_window, fai_cose, &pippo);
-// 	mlx_hook(pippo.mlx_window, 17, 0, exit_x, &pippo);
-// 	mlx_pixel_put(pippo.mlx, pippo.mlx_window, 5, 5, 0x00FF0000);
-// 	mlx_loop(pippo.mlx);
-// }
+	if (!(*mat))
+		return ;
+	while ((*mat))
+		free((*mat));
+	free(*mat);
+	*mat = NULL;
+}
 
-// int main(void)
-// {
-// 	t_game pippo;
-// 	int i;
-// 	int j;
+int main(int ac, char **av)
+{
+    t_data game;
+    t_cub3d cub3d;
+  
+    ft_bzero(&game, sizeof(t_data));
+    ft_parser(&game,ac,av[1]);
+   
+    // ft_check_input(&game, ac, av[1]);
+    // parser_cub(&game, av[1]);
+    //   long_len_x(&game);
+    //       printf("%zu\n", game.x);
+    // ft_print_mat(game.map_x);
+    // ft_free_mat(game.map_x);
+    init_mlx(&cub3d);
+}
 
-// 	pippo.x = 100;
-// 	pippo.y = 100;
-// 	pippo.mlx = mlx_init();
-// 	pippo.mlx_window = mlx_new_window(pippo.mlx, 1200, 1000, "so_long");
-// 	pippo.image = mlx_xpm_file_to_image(pippo.mlx, "images/player.xpm", &i, &j);
-// 	mlx_put_image_to_window(pippo.mlx, pippo.mlx_window, pippo.image, 30, 30);
-// 	// mlx_put_image_to_window(pippo.mlx, pippo.mlx_window, pippo.image, 100, 104);
-// 	// mlx_key_hook(pippo.mlx_window, fai_cose, &pippo);
-// 	// mlx_hook(pippo.mlx_window, 17, 0, exit_x, &pippo);
-// 	mlx_pixel_put(pippo.mlx, pippo.mlx_window, 5, 5, 0x00FF0000);
-// 	mlx_pixel_put(pippo.mlx, pippo.mlx_window, 5, 6, 0x00FF0000);
-// 	mlx_pixel_put(pippo.mlx, pippo.mlx_window, 5, 7, 0x00FF0000);
-// 	mlx_loop(pippo.mlx);
-// }
+// parser
+// vedi i tab  v
+// vedi se non ci sono piu personaggi nella mappa
+// se la mappa giocabile
+
+
+// | KEY           | Action        |
+// | ------------- |:-------------:|
+// | `ESC`         | exit game     |
+// | `A`           | move left     |
+// | `D`           | move right    |
+// | `W`           | move forward  |
+// | `S`           | move backward |
+// | `→`           | turn right    |
+// | `←`           | turn left     |
+// | `M`           | hide/display map|
+// | `O`           | open/close door|
+// | `P`           | open/close secret door|
+// | `option`      | change weapon |
+// | `F10`         | sound on/off |
+//code
+// | `1`            | wall          |
+// | `0`            | floor         |
+// | `2`            | sprite #1     |
+// | `3`            | sprite #2     |
+// | `N`/`E`/`W`/`S`| player initial position + orientation|
+// | `A`            | ammo          |
+//*
