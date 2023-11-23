@@ -33,7 +33,6 @@ RESET	= \033[0;0m
 SRC_COUNT     = 0
 SRC_COUNT_TOT = 34
 SRC_PCT       = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
-
 		
 $(NAME): $(OBJS)
 	@printf "$(UNDER)$(BOLD)$(CYAN)\nCompiling CUB3D\n$(RESET)$(BOLD)"
@@ -44,17 +43,24 @@ $(NAME): $(OBJS)
 	fi
 
 mac: 
-	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME);\
+	@make -C mlx 1>/dev/null 2>&1 
+	@$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
-linux: 
-	@(make -C ./mlx_linux/) 2> /dev/null \
+#  &&  cp ./mlx_linux/libmlx.a ./  non necessario
+linux:
+	@make -C mlx_linux 2> /dev/null &&  cp ./mlx_linux/libmlx.a ./ 
 	$(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME);\
 
 all: $(NAME)
 
+
 clean:
-	@make -C ./mlx/ clean
 	@${RM} ${OBJS}
+	@if [ $(OS) = "Darwin" ]; then\
+		cd mlx && make clean && cd .. ;\
+	else\
+		cd mlx_linux && make clean && cd .. ;\
+	fi
 
 fclean: clean
 	@${RM} ${NAME}
@@ -62,3 +68,12 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+push: fclean
+	@read -p "Enter comment for git push:" comment;\
+	git add .  \
+    git commit "$$comment"  \
+	git push \
+ 	
+status:
+	git status
