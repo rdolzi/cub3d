@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 13:59:53 by flaviobiond       #+#    #+#             */
-/*   Updated: 2023/11/23 16:41:07 by rdolzi           ###   ########.fr       */
+/*   Updated: 2023/11/23 19:09:34 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int main(int ac, char **av)
 // vedi se non ci sono piu personaggi nella mappa
 // se la mappa giocabile
 
-// 
+// s
 // | KEY           | Action        |
 // | ------------- |:-------------:|
 // | `ESC`         | exit game     |
