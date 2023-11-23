@@ -31,7 +31,7 @@ END		=	\033[0m
 RESET	= \033[0;0m
 
 SRC_COUNT     = 0
-SRC_COUNT_TOT = 34
+SRC_COUNT_TOT = $(words $(LBFT) + $(GNL) + $(PARSER))
 SRC_PCT       = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
 		
 $(NAME): $(OBJS)
@@ -46,13 +46,11 @@ mac:
 	@make -C mlx 1>/dev/null 2>&1 
 	@$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
-#  &&  cp ./mlx_linux/libmlx.a ./  non necessario
 linux:
 	@make -C mlx_linux 2> /dev/null &&  cp ./mlx_linux/libmlx.a ./ 
 	$(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME);\
 
 all: $(NAME)
-
 
 clean:
 	@${RM} ${OBJS}
