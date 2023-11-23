@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flaviobiondo <flaviobiondo@student.42.f    +#+  +:+       +#+        */
+/*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 13:59:53 by flaviobiond       #+#    #+#             */
-/*   Updated: 2023/11/16 22:32:49 by flaviobiond      ###   ########.fr       */
+/*   Updated: 2023/11/23 16:41:07 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int main(int ac, char **av)
 // vedi se non ci sono piu personaggi nella mappa
 // se la mappa giocabile
 
-
+// 
 // | KEY           | Action        |
 // | ------------- |:-------------:|
 // | `ESC`         | exit game     |

@@ -71,8 +71,8 @@ re: fclean all
 
 push: fclean
 	@read -p "Enter comment for git push:" comment;\
-	git add .  \
-    git commit "$$comment"  \
+	git add .  ;\
+    git commit -m "$$comment"  ;\
 	git push \
  	
 status:
