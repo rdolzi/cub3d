@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/06 11:34:54 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/07 01:12:12 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <stdbool.h>
 
 #include "./error.h"
-#include "../get_next_line/get_next_line.h"
+#include "../include/get_next_line/get_next_line.h"
 #define WIN_HEIGHT 480
 #define WIN_WIDTH 640
 
@@ -115,8 +115,10 @@ typedef struct s_color
 
 typedef struct s_game
 {
+    int     argc;
+    char    **argv;
     void    *mlx;
-    void    *win;
+    void    *mlx_win;
     int     win_height;
     int     win_width;
     char    **map;
@@ -129,9 +131,10 @@ typedef struct s_game
     int     **textures;
     t_ray ray;
     t_player player;
+    // NSWE
     t_img   walls[4];
+    // FLOOR - CEALING
     t_color type[2];
-    // t_cardinal cardinal;
 } t_game;
 
 
@@ -144,4 +147,33 @@ int     ft_strncmp(const char *s1, const char *s2, size_t n);
 char    *ft_strchr(char *s, char ch);
 char	*ft_strdup(char *s1);
 
+
+//INITIALIZER
+//--init_structures.c
+void init_game(t_game *game);
+//--transfer_info_file.c
+void transfer_info_file(t_game *game);
+
+//RAYCASTER
+//--render.c
+void render(t_game *game);
+
+//UTILS
+//--exit.c
+void clean_exit(t_game *game, int exit_status);
+int throw_exception(char *msg, char *specific, char *sub_specific);
+
+//CHECKER
+//--file.c
+void count_file_lines(t_game *game);
+void read_file(t_game *game);
+void check_input(t_game *game, char *format);
+
+//BUILDER
+//--build_game.c
+void build_game(t_game *game);
+
+//ENGINE
+//--key_bind.c
+void key_bind(t_game *game);
 #endif

@@ -5,6 +5,7 @@
 #define _CEILING "Ceiling"
 #define _DOOR "Door"
 
+#define ERR_ARGC "argc != 2"
 // -FILE EXCEPTION
 #define FILE_EXCEPTION "File Exception: "
 // --SPECIFICS
