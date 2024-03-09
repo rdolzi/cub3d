@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:33:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/06 23:37:29 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/09 18:49:12 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void raycasting()
 
 void render_frame(t_game *game)
 {
+    (void)game;
     // create image
     // init image (nuova, nessun img precedente è usata)
     // while win_height
@@ -36,10 +37,11 @@ void render_frame(t_game *game)
 // mlx_loop_hook's function
 void render(t_game *game)
 {
+    (void) game;
     // fa il free + calloc di texture_pixels
-    reset_texture_pixels(game);
+    // reset_texture_pixels(game);
     // resetta valori di default del ray
-    reset_ray(&game->ray);
-    raycasting(&game->player, game);
-    render_frame(game);
+    // reset_ray(&game->ray);
+    // raycasting(&game->player, game);
+    // render_frame(game);
 }

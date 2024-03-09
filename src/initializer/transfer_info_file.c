@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:58:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/07 00:35:53 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/09 18:48:15 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void insert_cardinal(t_game *game, int cardinal, char *str)
 
 void insert_map(t_game *game, int idx)
 {
+    (void)game;
+    (void)idx;
     // game
 }
 
@@ -87,7 +89,7 @@ void transfer_line(t_game *game, int idx)
         insert_color(game, FLOOR, &str[i]);
     else if (!ft_strncmp("C", &str[i], 2))
         insert_color(game, CEALING, &str[i]);
-    else if (ft_strchr("10", str[i]) || (ft_strchr("NSWE", str[i]) && str[i + 1] != NULL && ft_strchr("10 \n\t\v\r\f", str[i + 1])))
+    else if (ft_strchr("10", str[i]) || (ft_strchr("NSWE", str[i]) && str[i + 1] != '\0' && ft_strchr("10 \n\t\v\r\f", str[i + 1])))
         insert_map(game, i);
     else
         clean_exit(game, throw_exception(SYSTEM_EXCEPTION, ERR_ELEMENT_NOT_FOUND, NULL));

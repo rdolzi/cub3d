@@ -6,11 +6,11 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 10:46:07 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/03 20:13:28 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/09 18:50:29 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube.h"
+#include "../../include/cube.h"
 
 // void ft_printchar(char c, int fd)
 // {

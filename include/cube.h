@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/07 01:12:12 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/09 18:43:45 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <stdbool.h>
 
 #include "./error.h"
-#include "../include/get_next_line/get_next_line.h"
+#include "./get_next_line.h"
 #define WIN_HEIGHT 480
 #define WIN_WIDTH 640
 

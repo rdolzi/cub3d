@@ -6,11 +6,11 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 16:40:04 by rdolzi            #+#    #+#             */
-/*   Updated: 2023/02/19 21:22:46 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/09 18:44:18 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../../include/get_next_line.h"
 
 size_t	ft_is_newline(char c)
 {
@@ -38,7 +38,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_strchr(char *s1, char c)
+int	ft_strchr_gnl(char *s1, char c)
 {
 	size_t	i;
 

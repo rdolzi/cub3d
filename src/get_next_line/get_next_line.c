@@ -6,11 +6,11 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 12:12:48 by rdolzi            #+#    #+#             */
-/*   Updated: 2023/02/20 14:31:55 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/09 18:44:14 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../../include/get_next_line.h"
 // utilizza read per leggere il file e salva in backup (grandezza BUFFER_SIZE)
 //legge buffer volte fino a che non troviamo non raggiunge \n o EOF
 //salvando il risultato in stack
@@ -23,7 +23,7 @@ char	*ft_read(int fd, char *stack)
 	if (!buffer)
 		return (NULL);
 	len = 1;
-	while (!ft_strchr(stack, '\n') && len != 0)
+	while (!ft_strchr_gnl(stack, '\n') && len != 0)
 	{
 		len = read(fd, buffer, BUFFER_SIZE);
 		if (len < 0)
