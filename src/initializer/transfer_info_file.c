@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:58:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/09 18:48:15 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/10 00:30:48 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,20 @@ void insert_cardinal(t_game *game, int cardinal, char *str)
 
 void insert_map(t_game *game, int idx)
 {
-    (void)game;
-    (void)idx;
-    // game
+    int i;
+    char *str;
+
+    i = 0;
+    game->map_transferred = 1;
+    game->map = (char **)malloc(sizeof(char *) * (game->n_lines_file - idx));
+    if (game->map == NULL)
+        clean_exit(game, throw_exception(SYSTEM_EXCEPTION, ERR_MALLOC, NULL));
+    while (idx < game->n_lines_file)
+    {
+        game->map[i] = ft_strdup(game->raw_file[idx]);
+        i++;
+        idx++;
+    }
 }
 
 void transfer_line(t_game *game, int idx)
@@ -75,8 +86,10 @@ void transfer_line(t_game *game, int idx)
 
     i = 0;
     str = game->raw_file[idx];
-    while (ft_isspace(str[i]))
+    while (str[i] && ft_isspace(str[i]))
         i++;
+    if (i == ft_strlen(str)) // or len -1 ?
+        return ;
     if (!ft_strncmp("NO", &str[i], 2))
         insert_cardinal(game, NORTH, &str[i]);
     else if (!ft_strncmp("EA", &str[i], 2))
@@ -89,7 +102,8 @@ void transfer_line(t_game *game, int idx)
         insert_color(game, FLOOR, &str[i]);
     else if (!ft_strncmp("C", &str[i], 2))
         insert_color(game, CEALING, &str[i]);
-    else if (ft_strchr("10", str[i]) || (ft_strchr("NSWE", str[i]) && str[i + 1] != '\0' && ft_strchr("10 \n\t\v\r\f", str[i + 1])))
+    else if (ft_strchr("10", str[i]) || (ft_strchr("NSWE", str[i]) 
+        && str[i + 1] && ft_strchr("10 \n\t\v\r\f", str[i + 1])))
         insert_map(game, i);
     else
         clean_exit(game, throw_exception(SYSTEM_EXCEPTION, ERR_ELEMENT_NOT_FOUND, NULL));
@@ -121,7 +135,7 @@ void transfer_info_file(t_game *game)
     // read and set file
     read_file(game);
     // transfer_info(game);
-    while (i < game->n_lines_file)
+    while (i < game->n_lines_file && !game->map_transferred)
     {
         transfer_line(game, i);
         i++;

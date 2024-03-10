@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:33:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/09 18:49:12 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/10 22:45:33 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void render(t_game *game)
     // resetta valori di default del ray
     // reset_ray(&game->ray);
     // raycasting(&game->player, game);
+    // update_fps(game);
     // render_frame(game);
 }

@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/09 18:43:45 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/10 22:43:39 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,14 @@ typedef struct s_ray
 
 typedef struct s_player
 {
-    int placeholder;
+    double  pos_x;
+    double  pos_y;
+    double  dir_x;
+    double  dir_y;
+    // key press
+    int     move_x;
+    int     move_y;
+    int     rotate;
 } t_player;
 
 
@@ -122,9 +129,12 @@ typedef struct s_game
     int     win_height;
     int     win_width;
     char    **map;
+    long    old_time;
+    int     fps;
     // ---
     char     **raw_file;
     int     n_lines_file;
+    int     map_transferred;
     char    *path;
     // ---
     int     **texture_pixels;

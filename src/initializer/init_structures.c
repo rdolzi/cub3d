@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:41:09 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/07 01:05:04 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/10 22:44:02 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,24 @@ void init_game(t_game *game)
     game->win_height = WIN_HEIGHT;
     game->win_width = WIN_WIDTH;
     game->map = NULL;
+    game->old_time = 0;
+    game->fps = 0;
     game->argc = 0;
     game->argv = NULL;
     game->path = NULL;
     game->raw_file = NULL;
     game->n_lines_file = 0;
+    game->map_transferred = 0;
     game->texture_pixels = NULL; //?
     game->textures = NULL;       //?
     init_internal_structures(game);
     // init_ray
     // init_player
+    game->player.dir_x = 0;
+    game->player.dir_x = 0;
+    game->player.move_x = 0;
+    game->player.move_y = 0;
+    game->player.pos_x = 0;
+    game->player.pos_y = 0;
+    game->player.rotate = 0;
 }

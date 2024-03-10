@@ -6,14 +6,14 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:50:28 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/09 18:41:25 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/10 00:38:00 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cube.h"
 
 //TODO:
-// 1) MAKEFILE COMPILE
+// 1) MAKEFILE COMPILE V
 // 2) FINISH FUNCTION
 // 3) IMPORT MAPS && TESTS
 // 4) CHECK RENDER FLOW
@@ -25,7 +25,7 @@ int main(int argc, char **argv)
     
     game.argc = argc;
     game.argv = argv;
-    // build_game(&game);
+    build_game(&game);
     // start_game(&game);
     //     // display_menu();
     //     // display first frame
