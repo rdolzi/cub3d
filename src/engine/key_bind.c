@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:03:17 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/10 21:48:18 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/12 22:56:00 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int key_press(int keycode, t_game *game)
 {
     if (keycode == S)
-       game->player.move_y = 1;
+       game->player.move.y = 1;
     if (keycode == D)
-        game->player.move_x = 1;
+        game->player.move.x = 1;
     if (keycode == W)
-        game->player.move_y = -1;
+        game->player.move.y = -1;
     if (keycode == A)
-        game->player.move_x = -1;
+        game->player.move.x = -1;
     if (keycode == LEFT)
         game->player.rotate = -1;
     if (keycode == RIGHT)
@@ -34,13 +34,13 @@ int key_press(int keycode, t_game *game)
 int key_release(int keycode, t_game *game)
 {
     if (keycode == S)
-        game->player.move_y = 0;
+        game->player.move.y = 0;
     if (keycode == D)
-        game->player.move_x = 0;
+        game->player.move.x = 0;
     if (keycode == W)
-        game->player.move_y = 0;
+        game->player.move.y = 0;
     if (keycode == A)
-        game->player.move_x = 0;
+        game->player.move.x = 0;
     if (keycode == LEFT)
         game->player.rotate = 0;
     if (keycode == RIGHT)

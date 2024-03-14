@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/10 22:43:39 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/14 00:34:41 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,17 +98,23 @@ typedef struct s_ray
 //     char *west_texture_path;
 // } t_cardinal;
 
-
+typedef struct s_coordinate
+{
+    double x;
+    double y;
+}   t_coordinate;
 
 typedef struct s_player
 {
-    double  pos_x;
-    double  pos_y;
-    double  dir_x;
-    double  dir_y;
-    // key press
-    int     move_x;
-    int     move_y;
+    // double  pos_x;
+    // double  pos_y;
+    // double  dir_x;
+    // double  dir_y;
+    t_coordinate position;
+    t_coordinate direction;
+    t_coordinate cam_plane;
+    // - key press -
+    t_coordinate move;
     int     rotate;
 } t_player;
 
@@ -167,6 +173,7 @@ void transfer_info_file(t_game *game);
 //RAYCASTER
 //--render.c
 void render(t_game *game);
+void render_image(t_game *game);
 
 //UTILS
 //--exit.c
@@ -181,9 +188,11 @@ void check_input(t_game *game, char *format);
 
 //BUILDER
 //--build_game.c
-void build_game(t_game *game);
+void set_mlx(t_game *game);
+void parse_game(t_game *game);
 
 //ENGINE
 //--key_bind.c
 void key_bind(t_game *game);
+int has_moved(t_game *game);
 #endif
