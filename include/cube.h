@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/14 00:34:41 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/15 00:54:17 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <fcntl.h>
 #include <stdbool.h>
 
+# include "../mlx/mlx.h"
 #include "./error.h"
 #include "./get_next_line.h"
 #define WIN_HEIGHT 480
@@ -172,7 +173,7 @@ void transfer_info_file(t_game *game);
 
 //RAYCASTER
 //--render.c
-void render(t_game *game);
+int  render(t_game *game);
 void render_image(t_game *game);
 
 //UTILS
@@ -190,6 +191,7 @@ void check_input(t_game *game, char *format);
 //--build_game.c
 void set_mlx(t_game *game);
 void parse_game(t_game *game);
+void display_menu();
 
 //ENGINE
 //--key_bind.c

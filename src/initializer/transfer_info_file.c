@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:58:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/10 00:30:48 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/15 01:04:01 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void insert_cardinal(t_game *game, int cardinal, char *str)
 void insert_map(t_game *game, int idx)
 {
     int i;
-    char *str;
+    // char *str;
 
     i = 0;
     game->map_transferred = 1;
@@ -88,7 +88,7 @@ void transfer_line(t_game *game, int idx)
     str = game->raw_file[idx];
     while (str[i] && ft_isspace(str[i]))
         i++;
-    if (i == ft_strlen(str)) // or len -1 ?
+    if (i == (int) ft_strlen(str)) // or len -1 ?
         return ;
     if (!ft_strncmp("NO", &str[i], 2))
         insert_cardinal(game, NORTH, &str[i]);

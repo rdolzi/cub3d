@@ -1,5 +1,7 @@
 NAME = cub3d
 
+SRC_DIRS = ./src 
+
 SRCS = ./src/main.c
 GNL = $(wildcard ./src/get_next_line/*.c)
 BUILDER = $(wildcard ./src/builder/*.c)
@@ -29,7 +31,7 @@ END		=	\033[0m
 RESET	= \033[0;0m
 
 SRC_COUNT     = 0
-SRC_COUNT_TOT = 11
+SRC_COUNT_TOT := $(shell find $(SRC_DIRS) -name '*.c' | wc -l) 
 SRC_PCT       = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
 
 %.o: %.c

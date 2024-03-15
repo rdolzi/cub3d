@@ -6,11 +6,17 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 00:12:41 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/14 00:25:30 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/15 00:53:48 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
+
+// print the commands needed to player the game
+void display_menu()
+{
+    
+}
 
 void set_mlx(t_game *game)
 {

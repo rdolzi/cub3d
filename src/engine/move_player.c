@@ -6,11 +6,25 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 23:21:32 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/14 00:55:40 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/15 01:00:34 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
+
+int move_player(t_game *game, int new_y, int new_x)
+{
+    (void) game;
+    (void) new_x;
+    (void) new_y;
+    return 1;
+}
+
+int rotate_player(t_game *game)
+{
+    (void)game;
+    return 1;
+}
 
 int check_movement(t_game *game, int y, int x)
 {

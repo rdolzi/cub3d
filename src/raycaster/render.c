@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:33:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/14 00:57:55 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/15 01:11:02 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,22 @@ void raycasting(t_game *game)
     while (pixel < game->win_width)
     {
         //init_raycasting_info(pixel, &ray, player);
-        build_ray(game, pixel);
-        build_texture(game);
-        set_step_and_side_dist(game);
-        perform_dda(game);
-        calculate_wall_distance(game);
-        update_texture(game, pixel);
+        // build_ray(game, pixel);
+        // build_texture(game);
+        // set_step_and_side_dist(game);
+        // perform_dda(game);
+        // calculate_wall_distance(game);
+        // update_texture(game, pixel);
         pixel++;
     }
+}
+
+void set_pixel(t_img *image, int w, int h, int texture)
+{
+    (void)image;
+    (void)w;
+    (void)h;
+    (void)texture;
 }
 
 // create image
@@ -50,7 +58,7 @@ void print_frame(t_game *game)
     int h;
 
     // image.img = NULL;
-    alloc_img(game, &image);
+    // alloc_img(game, &image);
     h = 0;
     while (h < game->win_height)
     {
@@ -58,11 +66,11 @@ void print_frame(t_game *game)
         while (w < game->win_width)
         {
             if (game->texture_pixels[h][w] > 0)
-                set_pixel(image, w, h, game->texture_pixels[h][w]);
+                set_pixel(&image, w, h, game->texture_pixels[h][w]);
             else if (h < game->win_height / 2)
-                set_pixel(image, w, h, game->type[CEALING].hex);
+                set_pixel(&image, w, h, game->type[CEALING].hex);
             else if (h < game->win_height - 1)
-                set_pixel(image, w, h, game->type[FLOOR].hex);
+                set_pixel(&image, w, h, game->type[FLOOR].hex);
             w++;
         }
         h++;
@@ -81,15 +89,16 @@ void print_frame(t_game *game)
 // 4)print_frame(game);
 void render_image(t_game *game)
 {
-    reset_render(game);
-    raycasting(game); // define movespeed
-    update_fps(game); // calculate and print fps in image's frame
-    print_frame(game);
+    (void)game;
+    // reset_render(game);
+    // raycasting(game); // define movespeed
+    // update_fps(game); // calculate and print fps in image's frame
+    // print_frame(game);
 }
 
 // mlx_loop_hook's function
 // will render a new image only if player has moved
-void render(t_game *game)
+int render(t_game *game)
 {
     if (has_moved(game)) // -> so long logic
         render_image(game);
