@@ -6,13 +6,23 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:41:09 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/15 01:03:36 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/17 03:31:13 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
 
 // refactor init, con una func per ogni singola structure
+
+void init_image(t_img *image)
+{
+    image->img = NULL;
+    image->addr = NULL;
+    image->path = NULL;
+    image->bpp = 0;
+    image->line_length = 0;
+    image->endian = 0;
+}
 
 void init_internal_structures(t_game *game)
 {
@@ -22,12 +32,7 @@ void init_internal_structures(t_game *game)
     // NSWE
     while (i < 4)
     {
-        game->walls[i].path = NULL;
-        game->walls[i].img = NULL;
-        game->walls[i].addr = NULL;
-        game->walls[i].bpp = 0;
-        game->walls[i].line_length = 0;
-        game->walls[i].endian = 0;
+        init_image(&game->walls[i]);
         i++;
     }
     // FLOOR - CEALING
@@ -38,6 +43,29 @@ void init_internal_structures(t_game *game)
         game->type[i].hex = 0;
         i++;
     }
+}
+
+void	init_ray(t_game *game)
+{
+	game->ray.direction.x = 0;
+	game->ray.direction.y = 0;
+	game->ray.player_pos.x = 0;
+	game->ray.player_pos.y = 0;
+	game->ray.step.x = 0;
+	game->ray.step.y = 0;
+	game->ray.side_distance.x = 0;
+	game->ray.side_distance.y = 0;
+	game->ray.delta_distance.x = 0;
+	game->ray.delta_distance.y = 0;
+    game->ray.cardinal = -1;
+    
+    game->ray.ndc = 0;
+    game->ray.side = -1;
+	game->ray.wall_dist = 0;
+	game->ray.wall_x = 0;
+	game->ray.line_height = 0;
+	game->ray.draw_start = 0;
+	game->ray.draw_end = 0;
 }
 
 void init_game(t_game *game)
@@ -56,10 +84,10 @@ void init_game(t_game *game)
     game->raw_file = NULL;
     game->n_lines_file = 0;
     game->map_transferred = 0;
-    game->texture_pixels = NULL; //?
+    game->pixels = NULL; //?
     game->textures = NULL;       //?
     init_internal_structures(game);
-    // init_ray
+    init_ray(game);
     // init_player
     // game->player.dir_x = 0;
     // game->player.dir_x = 0;

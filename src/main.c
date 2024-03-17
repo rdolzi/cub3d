@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:50:28 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/15 01:42:43 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/17 02:43:07 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,13 @@ void build_game(t_game *game)
 
 void start_game(t_game *game)
 {
-    (void)game;
     display_menu();
-    // render_image(game);
+    render_screen(game);
 }
 
 void run_game(t_game *game)
 {
-    /// key_bind(game);
-    mlx_loop_hook(game->mlx, render, (void *)game);
+    mlx_loop_hook(game->mlx, render, game);
     mlx_loop(game->mlx);
 }
 
@@ -85,5 +83,5 @@ int main(int argc, char **argv)
     game.argv = argv;
     build_game(&game);
     start_game(&game);
-    run_game(&game); 
+    run_game(&game);
 }

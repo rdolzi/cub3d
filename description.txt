@@ -1,0 +1,52 @@
+function comments guidelines:
+
+/**
+ * @brief Brief description of the function.
+ *
+ * Detailed description of the function's purpose, behavior, and any other relevant details.
+ *
+ * @param param1 Description of the first parameter.
+ * @param param2 Description of the second parameter.
+ * @return Description of the return value (if any).
+ */
+
+---------------------------------
+
+
+Raycasting Process:
+Raycasting is a technique used in computer graphics to render a 3D scene from a 2D perspective, typically in real-time applications like video games.
+Here's an overview of how raycasting works:
+
+Initialization: Raycasting starts with a virtual camera positioned within the 3D scene. This camera has a field of view (FOV) and a viewing plane.
+
+Casting Rays: For each column of pixels on the viewing plane, a ray is cast from the camera's position through the corresponding pixel.
+
+Intersection Testing: The cast ray is tested for intersections with objects in the scene. This is typically done using algorithms like DDA or more sophisticated techniques like ray-object intersection tests for complex geometries.
+
+Depth Calculation: The distance from the camera to the first object hit by the ray is calculated. This distance determines how tall or short the object appears on the screen.
+
+Drawing: Based on the depth and the properties of the intersected object (e.g., texture, color), the corresponding pixel on the screen is colored.
+
+Projection: This process is repeated for each column of pixels on the viewing plane, resulting in a 2D representation of the 3D scene.
+
+Optimizations: Various optimizations can be applied to improve performance, such as using bounding volumes to quickly discard rays that won't intersect with objects, or implementing techniques like shadow mapping and ambient occlusion for more realistic rendering.
+
+In summary, the DDA algorithm is used for line rasterization, while raycasting is a technique for rendering 3D scenes from a 2D perspective, typically used in real-time graphics applications like video games.
+
+
+
+DIGITAL DIFFERENTIAL ANALYZER (DDA) ALGORITHM:
+The Digital Differential Analyzer (DDA) algorithm is a method used for line rasterization, which is the process of converting vector-based graphics (lines, curves, etc.) into a raster or pixel-based representation for display on a screen. 
+Here's how it works:
+
+Initialization: The DDA algorithm starts with two points representing the endpoints of the line segment.
+
+Calculating Slope: It calculates the slope of the line using the difference in x and y coordinates between the two points.
+
+Determining Increment: Based on the slope, it determines which coordinate (x or y) increments by 1 unit for each step along the line.
+
+Iterative Process: The algorithm then iterates along the line from one endpoint to the other, incrementing the appropriate coordinate by 1 unit in each step and determining the corresponding pixel to be colored.
+
+Rasterization: At each step, the algorithm determines which pixel to color by rounding the coordinates to the nearest integer.
+
+Rendering: After rasterization, the line is drawn pixel by pixel, producing a smooth appearance.

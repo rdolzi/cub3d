@@ -6,11 +6,25 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:43:38 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/09 18:50:02 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/17 02:04:43 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
+
+void	free_matrix(void **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+    {
+        free(matrix[i]);
+        i++;
+    }	
+	free(matrix);
+    matrix = NULL;
+}
 
 // compone un messaggio di errore, a partire dalle stringe input e stampa su fd 2.
 // msg non puoi essere NULL, specific e sub_specific sono opzionali.
@@ -34,7 +48,7 @@ void clean_exit(t_game *game, int exit_status)
     // mlx + win + loop_end
     // free_data(matrix)
     // free_texture
-    // free_texture_pixels
+    // free_pixels
     // free_texture_info
     // free_map
     exit(exit_status);

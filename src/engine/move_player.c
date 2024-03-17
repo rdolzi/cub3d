@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 23:21:32 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/15 01:00:34 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/16 23:57:54 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,21 @@ int move_player(t_game *game, int new_y, int new_x)
     return 1;
 }
 
-int rotate_player(t_game *game)
+//  the function is responsible for rotating the player's view 
+/**
+ * @brief Rotates the player's view left or right.
+ *
+ * This function rotates the player's view left or right based on the given 
+ * rotation speed, adjusting the direction of the player's vision.
+ *
+ * @param game Pointer to the game data structure containing player information.
+ * @param rotspeed The rotation speed for the player's view.
+ * @return 1 always indicating the rotation is successful.
+ */
+int rotate_player_view(t_game *game)
 {
     (void)game;
+    
     return 1;
 }
 
@@ -55,6 +67,6 @@ int has_moved(t_game *game)
     if (p->move.x != 0 || p->move.y != 0)
         has_moved = check_movement(game, p->move.x, p->move.y);
     if (p->rotate != 0)
-        has_moved = rotate_player(game);
+        has_moved = rotate_player_view(game);
     return (has_moved);
 }

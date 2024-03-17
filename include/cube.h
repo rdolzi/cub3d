@@ -6,13 +6,14 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/15 00:54:17 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/17 04:01:16 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBE_H
 # define CUBE_H
 
+#include <math.h>
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdbool.h>
@@ -62,11 +63,17 @@ enum e_color
     CEALING = 1
 };
 
+typedef struct s_coordinate
+{
+    double x;
+    double y;
+}   t_coordinate;
+
 typedef struct s_img
 {
     char *path;
     void *img;
-    void *addr;
+    int *addr;
     int bpp;
     int line_length;
     int endian;
@@ -86,31 +93,27 @@ typedef struct s_img
 
 typedef struct s_ray
 {
-    int placeholder;
+    t_coordinate direction;
+    // player position
+    t_coordinate player_pos;
+    // DDA Algorithm elements
+    t_coordinate step;
+    t_coordinate side_distance;
+    t_coordinate delta_distance;
+    // cardinal's .xpm to render
+    int cardinal;
+    // --
+    int ndc;
+    int side;
+    int wall_dist;
+    int wall_x;
+    int line_height;
+    int draw_start;
+    int draw_end;
 } t_ray;
-
-// t_img textures contains info after mlx_new_img + mlx_xpm_to_img
-// typedef struct s_cardinal
-// {
-//     t_img textures[4];
-//     char *north_texture_path;
-//     char *south_texture_path;
-//     char *east_texture_path;
-//     char *west_texture_path;
-// } t_cardinal;
-
-typedef struct s_coordinate
-{
-    double x;
-    double y;
-}   t_coordinate;
 
 typedef struct s_player
 {
-    // double  pos_x;
-    // double  pos_y;
-    // double  dir_x;
-    // double  dir_y;
     t_coordinate position;
     t_coordinate direction;
     t_coordinate cam_plane;
@@ -144,7 +147,7 @@ typedef struct s_game
     int     map_transferred;
     char    *path;
     // ---
-    int     **texture_pixels;
+    int     **pixels;
     int     **textures;
     t_ray ray;
     t_player player;
@@ -168,18 +171,30 @@ char	*ft_strdup(char *s1);
 //INITIALIZER
 //--init_structures.c
 void init_game(t_game *game);
+void init_image(t_img *image);
+void init_ray(t_game *game);
 //--transfer_info_file.c
 void transfer_info_file(t_game *game);
 
 //RAYCASTER
 //--render.c
 int  render(t_game *game);
-void render_image(t_game *game);
+void render_screen(t_game *game);
+//--print_frame.c
+void print_screen(t_game *game);
+//--raycasting_algorithm.c
+void raycasting(t_game *game);
+//--dda_algorithm.c
+void set_step_and_side_distance(t_game *game);
+void perform_digital_differential_analysis(t_game *game);
 
 //UTILS
 //--exit.c
+void free_matrix(void **matrix);
 void clean_exit(t_game *game, int exit_status);
-int throw_exception(char *msg, char *specific, char *sub_specific);
+int  throw_exception(char *msg, char *specific, char *sub_specific);
+//--ft_calloc.c
+void	*ft_calloc(int count, int size);
 
 //CHECKER
 //--file.c
