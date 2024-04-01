@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:17:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/17 04:06:30 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/01 23:03:19 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,75 @@ void initialize_raycasting_data(t_game *game, int column)
  */
 void compute_wall_line_height(t_game *game)
 {
+    t_ray *ray;
+    t_player *player;
+
+    ray = &game->ray;
+    player = &game->player;
+    if (ray->side == EAST || ray->side == WEST)
+        ray->wall_dist = ray->side_distance.x - ray->delta_distance.x;
+    else
+        ray->wall_dist = ray->side_distance.y - ray->delta_distance.y;
+        
+    // Calculate line height based on preparation wall distance
+    ray->line_height = WIN_HEIGHT / ray->wall_dist;
+    
+    // Calculate draw start position
+    ray->draw_start = -ray->line_height / 2 + WIN_HEIGHT / 2;
+    
+    // Adjust draw start if it's outside the screen boundaries
+    if (ray->draw_start <= 0)
+        ray->draw_start = 0;
+    
+    // Calculate draw end position
+    ray->draw_end = ray->line_height / 2 + WIN_HEIGHT / 2;
+    
+    // Adjust draw end if it's outside the screen boundaries
+    if (ray->draw_end >= WIN_HEIGHT)
+        ray->draw_end = WIN_HEIGHT - 1;
+
+    // set wall_x
+    if (ray->side == WEST || ray->side == EAST)
+		ray->wall_x = player->position.y + ray->wall_dist * ray->direction.y;
+	else
+		ray->wall_x = player->position.x + ray->wall_dist * ray->direction.x;
+	ray->wall_x -= floor(ray->wall_x);
+}
+
+void init_texture(t_game *game)
+{
     (void)game;
 }
 
 void update_pixels(t_game *game, int column)
 {
-    (void) game;
-    (void) column;
+    t_ray *ray;
+    int         x;
+    int			y;
+    int         y1;
+    int			color;
+    
+    ray = &game->ray;
+    init_texture(game);
+	x = (int)(ray->wall_x * TEXTURE_SIZE);
+	if (((ray->side == EAST || ray->side == WEST) && ray->direction.x < 0)
+		|| ((ray->side == SOUTH || ray->side == NORTH) && ray->direction.y > 0))
+		x = TEXTURE_SIZE - x - 1;
+	ray->s = 1.0 * TEXTURE_SIZE / ray->line_height;
+	ray->pos = (ray->draw_start - WIN_HEIGHT / 2
+			+ ray->line_height / 2) * ray->s;
+	y = ray->draw_start;
+	while (y < ray->draw_end)
+	{
+		y1 = (int)ray->pos & (TEXTURE_SIZE - 1);
+		ray->pos += ray->s;
+		color = game->textures[ray->side][TEXTURE_SIZE * y1 + x];
+		if (ray->side == NORTH || ray->side == EAST)
+			color = (color >> 1) & 8355711;
+		if (color > 0)
+			game->pixels[y][x] = color;
+		y++;
+	}
 }
 
 /**

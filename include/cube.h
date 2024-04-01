@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/17 04:01:16 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/01 22:45:14 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include "./get_next_line.h"
 #define WIN_HEIGHT 480
 #define WIN_WIDTH 640
+#define TEXTURE_SIZE 64
 
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
@@ -110,6 +111,9 @@ typedef struct s_ray
     int line_height;
     int draw_start;
     int draw_end;
+    // -- line?
+    int s;
+    int pos;
 } t_ray;
 
 typedef struct s_player

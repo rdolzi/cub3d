@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:10:27 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/17 02:26:14 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/03/17 16:58:17 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ void print_screen(t_game *game)
         }
         h++;
     }
-    mlx_put_image_to_window(game->mlx, game->mlx, image.img, 0, 0);
+    mlx_put_image_to_window(game->mlx, game->mlx_win, image.img, 0, 0);
     mlx_destroy_image(game->mlx, image.img);
 }
