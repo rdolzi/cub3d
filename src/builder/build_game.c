@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 00:12:41 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/02 14:55:15 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/02 17:31:18 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void set_mlx(t_game *game)
 //          3.3.H)init player
 void parse_game(t_game *game)
 {
-    parse_texture(game); // ->done
-    //parse_color(game);
-    //parse_map(game);
+    parse_cardinal(game); // ->done
+    //parse_color(game); //TODO
+    //parse_map(game); //TODO
 }

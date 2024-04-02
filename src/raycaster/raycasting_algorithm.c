@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:17:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/02 01:37:22 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/02 17:30:04 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void update_pixels(t_game *game, int column)
     int			y;
     int         y1;
     int			color;
-    
+    (void) column;
     ray = &game->ray;
     // parse_texture(game); viene fatto durante la fase di build
 	x = (int)(ray->wall_x * TEXTURE_SIZE);

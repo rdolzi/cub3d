@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:47:57 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/02 14:46:09 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/02 17:32:23 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ void check_input(t_game *game, char *format)
     char *file;
     
     i = 0;
-    file = game->argv[1];
     if (game->argc != 2)
         clean_exit(game, throw_exception(ERR_ARGC, NULL, NULL));
-    if (format == CUB) // STRNCMP?
+    file = game->argv[1];
+    if (!strcmp(format,CUB)) // STRNCMP?
     {
         i = ft_strlen(file);
         if (!(file[i - 1] == 'b' && file[i - 2] == 'u' && file[i - 3] == 'c' && file[i - 4] == '.'))
             clean_exit(game, throw_exception(FILE_EXCEPTION, ERR_FILE_FORMAT, CUB));
     }
-    else if (format == XPM)
+    else if (!strcmp(format,XPM))
     {
         i = ft_strlen(file);
         if (!(file[i - 1] == 'm' && file[i - 2] == 'p' && file[i - 3] == 'x' && file[i - 4] == '.'))

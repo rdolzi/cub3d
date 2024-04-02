@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/02 14:52:06 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/02 17:29:38 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdbool.h>
-
+#include <string.h>
 # include "../mlx/mlx.h"
 #include "./error.h"
 #include "./get_next_line.h"
