@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:41:09 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/17 03:31:13 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/02 14:38:26 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void init_image(t_img *image)
     image->bpp = 0;
     image->line_length = 0;
     image->endian = 0;
+    image->width = 0;
+    image->height = 0;
 }
 
 void init_internal_structures(t_game *game)
@@ -47,16 +49,16 @@ void init_internal_structures(t_game *game)
 
 void	init_ray(t_game *game)
 {
-	game->ray.direction.x = 0;
-	game->ray.direction.y = 0;
-	game->ray.player_pos.x = 0;
-	game->ray.player_pos.y = 0;
-	game->ray.step.x = 0;
-	game->ray.step.y = 0;
-	game->ray.side_distance.x = 0;
-	game->ray.side_distance.y = 0;
-	game->ray.delta_distance.x = 0;
-	game->ray.delta_distance.y = 0;
+	game->ray.direction.x = 0.0;
+	game->ray.direction.y = 0.0;
+	game->ray.player_pos.x = 0.0;
+	game->ray.player_pos.y = 0.0;
+	game->ray.step.x = 0.0;
+	game->ray.step.y = 0.0;
+	game->ray.side_distance.x = 0.0;
+	game->ray.side_distance.y = 0.0;
+	game->ray.delta_distance.x = 0.0;
+	game->ray.delta_distance.y = 0.0;
     game->ray.cardinal = -1;
     
     game->ray.ndc = 0;
@@ -66,6 +68,9 @@ void	init_ray(t_game *game)
 	game->ray.line_height = 0;
 	game->ray.draw_start = 0;
 	game->ray.draw_end = 0;
+
+    game->ray.s = 0.0;
+    game->ray.pos = 0.0;
 }
 
 void init_game(t_game *game)
@@ -84,26 +89,17 @@ void init_game(t_game *game)
     game->raw_file = NULL;
     game->n_lines_file = 0;
     game->map_transferred = 0;
-    game->pixels = NULL; //?
-    game->textures = NULL;       //?
+    game->pixels = NULL;
+    game->textures = NULL;
     init_internal_structures(game);
     init_ray(game);
     // init_player
-    // game->player.dir_x = 0;
-    // game->player.dir_x = 0;
-    // game->player.move_x = 0;
-    // game->player.move_y = 0;
-    // game->player.pos_x = 0;
-    // game->player.pos_y = 0;
     game->player.position.x = 0;
     game->player.position.y = 0;
-    
     game->player.direction.x = 0;
     game->player.direction.y = 0;
-    
     game->player.cam_plane.x = 0;
     game->player.cam_plane.y = 0;
-    
     game->player.move.x = 0;
     game->player.move.y = 0;
     // game->player.rotate = 0;

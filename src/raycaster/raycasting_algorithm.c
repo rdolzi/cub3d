@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:17:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/01 23:03:19 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/02 01:37:22 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,6 @@ void compute_wall_line_height(t_game *game)
 	ray->wall_x -= floor(ray->wall_x);
 }
 
-void init_texture(t_game *game)
-{
-    (void)game;
-}
-
 void update_pixels(t_game *game, int column)
 {
     t_ray *ray;
@@ -99,7 +94,7 @@ void update_pixels(t_game *game, int column)
     int			color;
     
     ray = &game->ray;
-    init_texture(game);
+    // parse_texture(game); viene fatto durante la fase di build
 	x = (int)(ray->wall_x * TEXTURE_SIZE);
 	if (((ray->side == EAST || ray->side == WEST) && ray->direction.x < 0)
 		|| ((ray->side == SOUTH || ray->side == NORTH) && ray->direction.y > 0))
@@ -139,7 +134,7 @@ void raycasting(t_game *game)
         initialize_raycasting_data(game, column); // -> done
         set_step_and_side_distance(game); // -> done
         perform_digital_differential_analysis(game); // -> done
-        compute_wall_line_height(game);
+        compute_wall_line_height(game); // -> done
         update_pixels(game, column);
         column++;
     }

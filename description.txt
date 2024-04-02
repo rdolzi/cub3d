@@ -50,3 +50,38 @@ Iterative Process: The algorithm then iterates along the line from one endpoint 
 Rasterization: At each step, the algorithm determines which pixel to color by rounding the coordinates to the nearest integer.
 
 Rendering: After rasterization, the line is drawn pixel by pixel, producing a smooth appearance.
+
+
+
+--------
+
+HANDLE IMAGE OF 2 DIMENSION ARRAY IN A A FLATTENED 1 DIMENSION ARRAY
+
+
+Theory:
+When working with images, especially in computer graphics and image processing, it's common to represent them as 2-dimensional grids, where each cell in the grid corresponds to a pixel. Each pixel typically contains information about its color or intensity.
+
+However, in computer memory, data is stored linearly, meaning it's arranged in a continuous sequence of memory locations. A 2-dimensional grid doesn't naturally map onto this linear structure.
+
+To store a 2-dimensional grid in a 1-dimensional array, we need to flatten it. This means we linearize the grid, converting rows and columns into a single sequence of elements.
+
+One common technique to achieve this flattening is using ROW-MAJOR ORDER.
+
+In row-major order, the elements of each row are stored consecutively in memory, and then the rows themselves are placed one after the other. This allows us to index into the 1-dimensional array using a formula that combines row and column indices.
+
+For a 2-dimensional grid with dimensions rows × columns, the formula to map the (row, column) coordinates to a linear index in the 1-dimensional array is often:
+
+
+> linear_index = row * columns + column
+
+
+This approach is efficient and allows us to work with images in a manner that is compatible with the linear nature of computer memory.
+Flattening a 2-dimensional representation into a 1-dimensional array using indexing logic is a common technique in practice for efficiently storing and manipulating images in memory.
+
+Example:
+let's say we have an image represented as a 2-dimensional grid of pixels, where each pixel has a color value. To store this image in memory, we flatten it into a 1-dimensional array. We use the formula buffer[y * width + x] to access the pixel at position (x, y) in the 2-dimensional grid.
+
+Here, y represents the row index, x represents the column index, and width represents the number of columns (or the width) of the image. By multiplying y by width, we calculate the offset to the beginning of the row. Adding x to this offset gives us the position of the desired pixel in the flattened array.
+
+
+

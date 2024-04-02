@@ -19,6 +19,7 @@
 // --SPECIFICS
 #define ERR_MAP_NOT_FOUND "Map not found. Insert the map into the file"
 #define ERR_MAP_WALLS "Map is not surrounded by walls"
+#define ERR_MAP_CARDINAL "Wall image not found. Insert all xpm paths required."
 #define ERR_MAP_POSITION "Map is not the last element in file"
 #define ERR_PLAYER_NOT_FOUND "Player not found. Insert N, S, E or W into the map"
 // messaggio unico per err_format(per eventuali spazi?) and err_range

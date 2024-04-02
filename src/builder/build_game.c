@@ -6,16 +6,16 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 00:12:41 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/15 00:53:48 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/02 14:55:15 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
 
-// print the commands needed to player the game
+// print the commands needed to play the game
 void display_menu()
 {
-    
+    write(1,"menu..\n",7);
 }
 
 void set_mlx(t_game *game)
@@ -30,9 +30,12 @@ void set_mlx(t_game *game)
 
 // 3)PARSE INFORMATION FILE FROM STRUCTURES ->wip
 //      3.1)parse cardinals
-//      3.2)parse_colors()
-//          set colors
-//          check color validity
+//              check xpm file
+//              perform row_major tecnique
+//      3.2)parse_colors
+//              check rgb
+//              convert rgb
+//              check color validity
 //      3.3)parse map
 //          3.3.A)set 1 if is_space
 //          3.3.B)check map validity
@@ -42,12 +45,9 @@ void set_mlx(t_game *game)
 //          3.3.F)check elements
 //          3.3.G)check player
 //          3.3.H)init player
-//      3.4)parse texture
-//          3.4.A)check file
-//          3.4.B)check rgb
-//          3.4.C)convert rgb
-//          3.4.D)check texture validity
 void parse_game(t_game *game)
 {
-    (void)game;
+    parse_texture(game); // ->done
+    //parse_color(game);
+    //parse_map(game);
 }

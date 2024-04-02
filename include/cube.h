@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/01 22:45:14 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/02 14:52:06 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@
 enum e_cardinal
 {
     NORTH = 0,
-    EAST = 1,
-    SOUTH = 2,
+    SOUTH = 1,
+    EAST = 2,
     WEST = 3
 };
 
@@ -78,6 +78,8 @@ typedef struct s_img
     int bpp;
     int line_length;
     int endian;
+    int		width;
+	int		height;
 } t_img;
 
 // typedef struct s_img
@@ -112,8 +114,8 @@ typedef struct s_ray
     int draw_start;
     int draw_end;
     // -- line?
-    int s;
-    int pos;
+    double s; //step
+    double pos;
 } t_ray;
 
 typedef struct s_player
@@ -211,6 +213,8 @@ void check_input(t_game *game, char *format);
 void set_mlx(t_game *game);
 void parse_game(t_game *game);
 void display_menu();
+//--parse_cardinal.c
+void parse_cardinal(t_game *game);
 
 //ENGINE
 //--key_bind.c

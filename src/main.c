@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:50:28 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/17 02:43:07 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/02 01:14:17 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 void build_game(t_game *game)
 {
     // 0)INIT STRUCTURES TO DEFAULT VALUES
-    init_game(game);
+    init_game(game); // -> ??
 
     // 1)CHECK ARGC && .CUB EXTENSION
     check_input(game, CUB);
