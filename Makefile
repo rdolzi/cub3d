@@ -34,6 +34,8 @@ SRC_COUNT     = 0
 SRC_COUNT_TOT := $(shell find $(SRC_DIRS) -name '*.c' | wc -l) 
 SRC_PCT       = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
 
+
+
 %.o: %.c
 	@$(CC) -Imlx -g -c $< -o $@
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
