@@ -5,11 +5,6 @@
 *.lib
 *.a
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
 # Visual Studio Code  iles
 .vscode/*
+*.DS_Store
