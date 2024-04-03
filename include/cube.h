@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/02 17:29:38 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/03 23:09:23 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,7 @@ void	*ft_calloc(int count, int size);
 //--file.c
 void count_file_lines(t_game *game);
 void read_file(t_game *game);
-void check_input(t_game *game, char *format);
+void check_input(t_game *game, char *format, char *path);
 
 //BUILDER
 //--build_game.c

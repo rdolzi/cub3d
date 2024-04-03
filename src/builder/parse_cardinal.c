@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:51:47 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/02 14:52:14 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/03 23:10:43 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	xpm_to_img(t_game *game, int cardinal)
     t_img *img;
 
     img = &game->walls[cardinal];
-	check_input(game, XPM);
+	check_input(game, XPM, game->walls[cardinal].path);
 	img->img = mlx_xpm_file_to_image(game->mlx, img->path,
 			&img->width, &img->height); //?
 	if (img->img == NULL)

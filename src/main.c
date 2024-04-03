@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:50:28 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/02 01:14:17 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/03 23:09:48 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@
 
 void build_game(t_game *game)
 {
+    if (game->argc != 2)
+        clean_exit(game, throw_exception(ERR_ARGC, NULL, NULL));
     // 0)INIT STRUCTURES TO DEFAULT VALUES
     init_game(game); // -> ??
 
     // 1)CHECK ARGC && .CUB EXTENSION
-    check_input(game, CUB);
+    check_input(game, CUB, game->argv[1]);
 
     // 2.A)initial_parse file cub
     //      2.A.1)read line numbers
