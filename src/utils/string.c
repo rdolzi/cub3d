@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 10:46:07 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/17 01:24:42 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/03 23:02:52 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,17 @@ int ft_strncmp(const char *s1, const char *s2, size_t n)
             return (us1[i] - us2[i]);
     }
     return (0);
+}
+
+
+char	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+		i++;
+	return (s1[i] - s2[i]);
 }
 
 char *ft_strchr(char *s, char ch)
