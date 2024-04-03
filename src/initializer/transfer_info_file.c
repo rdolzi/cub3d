@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:58:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/02 01:14:45 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/04 00:02:59 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,25 +86,37 @@ void transfer_line(t_game *game, int idx)
 
     i = 0;
     str = game->raw_file[idx];
+    printf("game->raw_file[idx:%d]:%s\n", idx, game->raw_file[idx]);
     while (str[i] && ft_isspace(str[i]))
         i++;
+    printf("str[i:%d]:%s\n", i, &str[i]);
+    printf("strlen:%d\n", (int)ft_strlen(str));
     if (i == (int) ft_strlen(str)) // or len -1 ?
         return ;
     if (!ft_strncmp("NO", &str[i], 2))
+    {
+        printf("entra (!ft_strncmp(NO, &str[i], 2))\n");
         insert_cardinal(game, NORTH, &str[i]);
+    }
     else if (!ft_strncmp("EA", &str[i], 2))
         insert_cardinal(game, EAST, &str[i]);
     else if (!ft_strncmp("SO", &str[i], 2))
         insert_cardinal(game, SOUTH, &str[i]);
     else if (!ft_strncmp("WE", &str[i], 2))
         insert_cardinal(game, WEST, &str[i]);
-    else if (!ft_strncmp("F", &str[i], 2))
+    else if (!ft_strncmp("F", &str[i], 1))
+    {
+        printf("entra (!ft_strncmp(F, &str[i], 2))\n");
         insert_color(game, FLOOR, &str[i]);
-    else if (!ft_strncmp("C", &str[i], 2))
+    }
+    else if (!ft_strncmp("C", &str[i], 1))
         insert_color(game, CEALING, &str[i]);
     else if (ft_strchr("10", str[i]) || (ft_strchr("NSWE", str[i]) 
         && str[i + 1] && ft_strchr("10 \n\t\v\r\f", str[i + 1])))
-        insert_map(game, i);
+        {
+            printf("entra in insert_map");
+            insert_map(game, i);
+        }
     else
         clean_exit(game, throw_exception(SYSTEM_EXCEPTION, ERR_ELEMENT_NOT_FOUND, NULL));
 }
@@ -137,6 +149,7 @@ void transfer_info_file(t_game *game)
     // transfer_info(game);
     while (i < game->n_lines_file && !game->map_transferred)
     {
+        printf("transfer %d line \n", i);
         transfer_line(game, i);
         i++;
     }
