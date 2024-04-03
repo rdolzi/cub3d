@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:41:09 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/02 14:38:26 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/03 22:40:02 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ void init_game(t_game *game)
     game->map = NULL;
     game->old_time = 0;
     game->fps = 0;
-    game->argc = 0;
-    game->argv = NULL;
     game->path = NULL;
     game->raw_file = NULL;
     game->n_lines_file = 0;
