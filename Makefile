@@ -34,19 +34,23 @@ SRC_COUNT     = 0
 SRC_COUNT_TOT := $(shell find $(SRC_DIRS) -name '*.c' | wc -l) 
 SRC_PCT       = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
 
+OBJ_DIR = ./obj
 
+OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,${SRCS}) \
+       $(patsubst %.c,$(OBJ_DIR)/%.o,${GNL}) \
+       $(patsubst %.c,$(OBJ_DIR)/%.o,${BUILDER}) \
+       $(patsubst %.c,$(OBJ_DIR)/%.o,${CHECKER}) \
+       $(patsubst %.c,$(OBJ_DIR)/%.o,${ENGINE}) \
+       $(patsubst %.c,$(OBJ_DIR)/%.o,${INITIALIZER}) \
+       $(patsubst %.c,$(OBJ_DIR)/%.o,${RAYCASTER}) \
+       $(patsubst %.c,$(OBJ_DIR)/%.o,${UTILS})
 
-%.o: %.c
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(@D)
 	@$(CC) -Imlx -g -c $< -o $@
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(eval SRC_PCT = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT)))
 	@printf "\r$(BOLD)$(GREEN)[%d/%d] 😊(%d%%)$(END)$(BOLD)$(BLUE)%-40s" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT) $<
-
-
-
-
-
-
 
 		
 $(NAME): $(OBJS)
@@ -80,6 +84,7 @@ clean:
 	${RM} ${OBJS}
 
 fclean: clean
+	${RM} -r ${OBJ_DIR}
 	${RM} ${NAME}
 	
 re: fclean all
