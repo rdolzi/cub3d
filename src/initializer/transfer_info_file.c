@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:58:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/04 00:02:59 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/04 00:46:28 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ void transfer_info_file(t_game *game)
     // read and set file
     read_file(game);
     // transfer_info(game);
-    while (i < game->n_lines_file && !game->map_transferred)
+    while (i < game->n_lines_file && game->map_transferred != 1)
     {
         printf("transfer %d line \n", i);
         transfer_line(game, i);
