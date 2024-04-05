@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:58:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/04 00:46:28 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/05 15:25:17 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void insert_map(t_game *game, int idx)
         clean_exit(game, throw_exception(SYSTEM_EXCEPTION, ERR_MALLOC, NULL));
     while (idx < game->n_lines_file)
     {
+        printf("inserting %d line: %s \n", i, game->raw_file[idx]);
         game->map[i] = ft_strdup(game->raw_file[idx]);
         i++;
         idx++;
@@ -114,8 +115,8 @@ void transfer_line(t_game *game, int idx)
     else if (ft_strchr("10", str[i]) || (ft_strchr("NSWE", str[i]) 
         && str[i + 1] && ft_strchr("10 \n\t\v\r\f", str[i + 1])))
         {
-            printf("entra in insert_map");
-            insert_map(game, i);
+            printf("entra in insert_map, riga: %d\n",i);
+            insert_map(game, idx);
         }
     else
         clean_exit(game, throw_exception(SYSTEM_EXCEPTION, ERR_ELEMENT_NOT_FOUND, NULL));
