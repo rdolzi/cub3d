@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:50:28 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/15 22:44:58 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/15 23:35:36 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_print_mat(char **mat)
 			x++;
 		}
 		y++;
-		write(1, "\n", 1);
+		// write(1, "\n", 1);
 	}
 }
 
@@ -58,7 +58,7 @@ void build_game(t_game *game)
     //      2.B.2)transfer color
     //      2.B.3)transfer map
     transfer_info_file(game);
-    ft_print_mat(game->map);
+    // ft_print_mat(game->map);
     
     
     
