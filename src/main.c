@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:50:28 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/03 23:09:48 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/15 22:44:58 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,34 @@
 // 3) IMPORT MAPS && TESTS
 // 4) CHECK RENDER FLOW V
 
+void	ft_print_mat(char **mat)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (mat[y])
+	{
+		x = 0;
+		while (mat[y][x])
+		{
+			write(1, &mat[y][x], 1);
+			x++;
+		}
+		y++;
+		write(1, "\n", 1);
+	}
+}
+
 void build_game(t_game *game)
 {
     if (game->argc != 2)
         clean_exit(game, throw_exception(ERR_ARGC, NULL, NULL));
     // 0)INIT STRUCTURES TO DEFAULT VALUES
     init_game(game); // -> ??
+    //      0.A) MLX CONFIGURATION  ->done
+    //      0.B)init mlx && win
+    set_mlx(game);
 
     // 1)CHECK ARGC && .CUB EXTENSION
     check_input(game, CUB, game->argv[1]);
@@ -36,7 +58,10 @@ void build_game(t_game *game)
     //      2.B.2)transfer color
     //      2.B.3)transfer map
     transfer_info_file(game);
-
+    ft_print_mat(game->map);
+    
+    
+    
     // 3)PARSE INFORMATION FILE FROM STRUCTURES ->wip
     //      3.1)parse cardinals
     //      3.2)parse_colors()
@@ -58,9 +83,7 @@ void build_game(t_game *game)
     //          3.4.D)check texture validity
     parse_game(game);
 
-    // 4) MLX CONFIGURATION  ->done
-    //      4.1)init mlx && win
-    set_mlx(game);
+  
     //      4.2)mlx hooks config
     key_bind(game);
 }
