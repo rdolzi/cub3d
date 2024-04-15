@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:51:47 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/03 23:10:43 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/15 22:55:02 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void parse_cardinal(t_game *game)
 {
     enum e_cardinal cardinal;
     
+	printf("entra in parse_cardinal\n");
     cardinal = NORTH;
     game->textures = ft_calloc(5, sizeof * game->textures);
     if (!game->textures)
@@ -78,4 +79,5 @@ void parse_cardinal(t_game *game)
        game->textures[cardinal] = parse_xpm(game, (int)cardinal);
         cardinal++;
     }
+	printf("esce in parse_cardinal\n");
 }

@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 00:12:41 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/02 17:31:18 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/15 22:47:42 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ void display_menu()
 
 void set_mlx(t_game *game)
 {
+    printf("entra in setmlx\n");
     game->mlx = mlx_init();
     if (!game->mlx)
         clean_exit(game, throw_exception(SYSTEM_EXCEPTION, ERR_MLX, NULL));
     game->mlx_win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
     if (!game->mlx_win)
         clean_exit(game, throw_exception(SYSTEM_EXCEPTION, ERR_MLX, NULL));
+     printf("esce in setmlx\n");
 }
 
 // 3)PARSE INFORMATION FILE FROM STRUCTURES ->wip
