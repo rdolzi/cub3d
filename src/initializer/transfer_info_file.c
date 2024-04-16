@@ -6,35 +6,11 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:58:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/16 02:52:18 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/16 02:55:48 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
-
-// void init_info_file(t_game *game, char *file)
-// {
-//     // set file path
-//     game->path = file;
-//     // count and set file lines
-//     count_file_lines(game); // count_lines?
-//     // read and set file
-//     read_file(game);
-// }
-
-// F 220,100,0 (possono essere presenti spazi vicino le virgole)
-// la funzione setta solo la str delle informazioni RGB senza fare il parse delle informazioni stesse.
-// il puntatore sta sulla prima lettera del cardinal.
-void insert_color(t_game *game, int type_c, char *str)
-{
-    int i;
-
-    i = 0;
-    str++;
-    while (ft_isspace(str[i]))
-        i++;
-    game->type[type_c].path = ft_strdup(str);
-}
 
 // prende una stringa in input
 // ritorna e alloca una nuova stringa senza eventuali spazi(inizio e fine)
@@ -65,6 +41,16 @@ char *remove_spaces(char *str)
         i++;
     }
     return (new_str);
+}
+
+// F 220,100,0 (possono essere presenti spazi vicino le virgole)
+// la funzione setta solo la str delle informazioni RGB senza fare il parse delle informazioni stesse.
+// il puntatore sta sulla prima lettera del cardinal.
+void insert_color(t_game *game, int type_c, char *str)
+{
+    str++;
+    game->type[type_c].path = remove_spaces(str);
+    printf("game->type[type_c].path:%s\n", game->type[type_c].path);
 }
 
 // typedef struct s_img
