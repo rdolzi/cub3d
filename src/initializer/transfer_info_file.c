@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:58:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/16 02:07:32 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/16 02:52:18 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,37 @@ void insert_color(t_game *game, int type_c, char *str)
     game->type[type_c].path = ft_strdup(str);
 }
 
+// prende una stringa in input
+// ritorna e alloca una nuova stringa senza eventuali spazi(inizio e fine)
+char *remove_spaces(char *str)
+{
+    int i;
+    char *new_str;
+    
+    i = 0;
+    new_str = NULL;
+    while (ft_isspace(str[i]) != 0)
+    {
+        // printf("str[%d]:%c ", i, str[i]);
+        str++;
+        i++;
+    }
+    i = 0;
+    while (ft_isspace(str[i]) == 0)
+    {
+        // printf("str[%d]:%c ", i, str[i]);
+        i++;
+    }
+    new_str = (char *)ft_calloc(i + 1, 1);
+    i = 0;
+    while (ft_isspace(str[i]) == 0)
+    {
+        new_str[i] = str[i];
+        i++;
+    }
+    return (new_str);
+}
+
 // typedef struct s_img
 // {
 //     char *path;
@@ -52,35 +83,10 @@ void insert_color(t_game *game, int type_c, char *str)
 // primi 2 str++ saltano il riferimento al cardinal
 void insert_cardinal(t_game *game, int cardinal, char *str)
 {
-    int i;
-
-    i = 0;
     printf("in insert_cardinal|str:%s\n", str);
     str++;
     str++;
-    while (ft_isspace(str[i]) != 0)
-    {
-        // printf("str[%d]:%c ", i, str[i]);
-        str++;
-        i++;
-    }
-    i = 0;
-    printf("in insert_cardinal|str:%s\n", str);
-    printf("new STR:%s\n", str);
-    while (ft_isspace(str[i]) == 0)
-    {
-        // printf("str[%d]:%c ", i, str[i]);
-        i++;
-    }
-    // printf("effective chars:%d\n", i);
-    // game->walls[cardinal].path = ft_strdup(str);
-    game->walls[cardinal].path = (char *)ft_calloc(i + 1, 1);
-    i = 0;
-    while (ft_isspace(str[i]) == 0)
-    {
-        game->walls[cardinal].path[i] = str[i];
-        i++;
-    }
+    game->walls[cardinal].path = remove_spaces(str);
     printf("game->walls[cardinal].path:%s\n", game->walls[cardinal].path);
 }
 
