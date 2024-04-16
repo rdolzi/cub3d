@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:58:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/15 23:28:08 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/16 02:07:32 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,39 @@ void insert_color(t_game *game, int type_c, char *str)
 // NO ./path_to_the_north_texture
 // la funzione setta solo il path dell .xpm senza fare il parse delle informazioni
 // il puntatore sta sulla prima lettera del cardinal.
+// primi 2 str++ saltano il riferimento al cardinal
 void insert_cardinal(t_game *game, int cardinal, char *str)
 {
     int i;
 
     i = 0;
+    printf("in insert_cardinal|str:%s\n", str);
     str++;
     str++;
-    while (ft_isspace(str[i]))
+    while (ft_isspace(str[i]) != 0)
+    {
+        // printf("str[%d]:%c ", i, str[i]);
+        str++;
         i++;
-    game->walls[cardinal].path = ft_strdup(str);
+    }
+    i = 0;
+    printf("in insert_cardinal|str:%s\n", str);
+    printf("new STR:%s\n", str);
+    while (ft_isspace(str[i]) == 0)
+    {
+        // printf("str[%d]:%c ", i, str[i]);
+        i++;
+    }
+    // printf("effective chars:%d\n", i);
+    // game->walls[cardinal].path = ft_strdup(str);
+    game->walls[cardinal].path = (char *)ft_calloc(i + 1, 1);
+    i = 0;
+    while (ft_isspace(str[i]) == 0)
+    {
+        game->walls[cardinal].path[i] = str[i];
+        i++;
+    }
+    printf("game->walls[cardinal].path:%s\n", game->walls[cardinal].path);
 }
 
 void insert_map(t_game *game, int idx)

@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:47:57 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/15 22:48:32 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/16 02:00:57 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ void check_input(t_game *game, char *format, char *path)
     else if (!strcmp(format,XPM))
     { // game->walls[1].path[i - 1]
         printf("ENTRA IN XPM\n");
-        if (!(path[i - 2] == 'm' && path[i - 3] == 'p' && path[i - 4] == 'x' && path[i - 5] == '.'))
+        // printf("path[i - 1]:%c\n", path[i - 1]);
+        // printf("path[i - 2]:%c\n", path[i - 2]);
+        // printf("path[i - 3]:%c\n", path[i - 3]);
+        // printf("path[i - 4]:%c\n", path[i - 4]);
+        if (!(path[i - 1] == 'm' && path[i - 2] == 'p' && path[i - 3] == 'x' && path[i - 4] == '.'))
             clean_exit(game, throw_exception(FILE_EXCEPTION, ERR_FILE_FORMAT, XPM));
         printf("ESCE IN XPM\n");
     }
