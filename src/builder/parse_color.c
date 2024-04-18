@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 02:11:15 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/18 17:12:00 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/18 20:23:24 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int *char_matrix_to_int(t_game *game, char **mat)
         rgb[i] = ft_atoi(mat[i]);
         i++;
     }
+    return (rgb);
 }
 
 // fa lo split del path
@@ -64,16 +65,15 @@ int *char_matrix_to_int(t_game *game, char **mat)
 int *get_rgb(t_game *game, int color)
 {
     int     i;
-    int     *rgb;
     char    **mat;
 
     i = 0;
-    mat = ft_split(game->type[color].path);
+    mat = ft_split(game->type[color].path, ',');
     while (mat[i])
         i++;
     if (i != 3)
     {
-        free_matrix(mat);
+        free_matrix((void **)mat);
         clean_exit(game, throw_exception(MAP_EXCEPTION, ERR_MAP_COLOR, NULL));
     }
     return (char_matrix_to_int(game, mat));

@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/18 00:19:28 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/18 20:48:56 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,12 +203,14 @@ int  throw_exception(char *msg, char *specific, char *sub_specific);
 //--ft_calloc.c
 void	*ft_calloc(int count, int size);
 int	ft_atoi(const char *str);
+char	**ft_split(char *s, char c);
 
 //CHECKER
 //--file.c
 void count_file_lines(t_game *game);
 void read_file(t_game *game);
 void check_input(t_game *game, char *format, char *path);
+int parse_map(t_game *game);
 
 //BUILDER
 //--build_game.c
