@@ -23,6 +23,8 @@
 #define ERR_MAP_COLOR "Color not found. Insert all colors rgb required."
 #define ERR_MAP_POSITION "Map is not the last element in file"
 #define ERR_PLAYER_NOT_FOUND "Player not found. Insert N, S, E or W into the map"
+#define ERR_PLAYER_DUPLICATE "There are too much players found. Insert only one N, S, E or W into the map"
+#define ERR_INVALID_CHAR "Invalid character in map."
 // messaggio unico per err_format(per eventuali spazi?) and err_range
 #define ERR_INVALID_RGB "Invalid RGB. Insert R,G,B colors in range [0,255]: format example \"0,255,60\""
 
