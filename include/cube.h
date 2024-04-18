@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/16 02:36:45 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/18 00:19:28 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ typedef struct s_player
 {
     t_coordinate position;
     t_coordinate direction;
+    char dir;
     t_coordinate cam_plane;
     // - key press -
     t_coordinate move;
@@ -132,7 +133,7 @@ typedef struct s_player
 typedef struct s_color
 {
     char *path;
-    unsigned int hex;
+    unsigned long hex;
     
 } t_color;
 
@@ -201,6 +202,7 @@ void clean_exit(t_game *game, int exit_status);
 int  throw_exception(char *msg, char *specific, char *sub_specific);
 //--ft_calloc.c
 void	*ft_calloc(int count, int size);
+int	ft_atoi(const char *str);
 
 //CHECKER
 //--file.c

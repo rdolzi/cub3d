@@ -6,16 +6,40 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 10:46:07 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/03 23:02:52 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/18 00:17:43 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
 
-// void ft_printchar(char c, int fd)
-// {
-//     write(fd, &c, 1);
-// }
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	j;
+	int	segn;
+	int	check;
+
+	check = 0;
+	i = 0;
+	j = 0;
+	segn = 1;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	while (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i++] == '-')
+			segn = -1;
+		check++;
+	}
+	if (check > 1)
+		return (j);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		j = j * 10 + (str[i] - '0');
+		i++;
+	}
+	return (j * segn);
+}
 
 int ft_isalpha(int c)
 {
