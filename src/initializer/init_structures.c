@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:41:09 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/03 22:40:02 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/19 02:47:38 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void init_game(t_game *game)
     game->win_height = WIN_HEIGHT;
     game->win_width = WIN_WIDTH;
     game->map = NULL;
+    game->map_len = 0;
     game->old_time = 0;
     game->fps = 0;
     game->path = NULL;

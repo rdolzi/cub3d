@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/18 20:48:56 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/19 02:47:10 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ typedef struct s_game
     int     win_height;
     int     win_width;
     char    **map;
+    int     map_len;
     long    old_time;
     int     fps;
     // ---

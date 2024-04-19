@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 16:56:47 by flaviobiond       #+#    #+#             */
-/*   Updated: 2024/04/18 19:08:09 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/19 03:08:34 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ void	check_frame(t_game *game)
 	int	x;
 
 	y = 0;
-	while (game->map[y])
+	while (y < game->map_len)
 	{
 		x = 0;
-		while (game->map[y][x])
+		while (x < (int) ft_strlen(game->map[y]))
 		{
-            printf("game->map[y][x]: %c\n", game->map[y][x]);
+            // printf("game->map[y][x]: %c\n", game->map[y][x]);
 			if (ft_strchr("0NSWED", game->map[y][x]))
 			{
-                printf("quando entra game->map[y][x]: %c\n", game->map[y][x]);
+                // printf("quando entra game->map[y][x]: %c\n", game->map[y][x]);
 				if (game->map[y - 1][x] == ' ' || game->map[y + 1][x] == ' '
 					|| game->map[y + 1][x + 1] == ' ' || game->map[y - 1][x
 					- 1] == ' ' || game->map[y + 1][x - 1] == ' '
@@ -56,11 +56,12 @@ int check_wall(t_game *game)
 {
 	int i;
 	
-	i = -1;
-	while(game->map[++i])
+	i = 0;
+	while(i < game->map_len)
 	{
-	if(game->map[i][0] != 32 && game->map[i][0] != '1' && !(game->map[i][0] >= 9 && game->map[i][0] <= 13))
+		if(game->map[i][0] != 32 && game->map[i][0] != '1' && !(game->map[i][0] >= 9 && game->map[i][0] <= 13))
 		return(-1);
+		i++;
 	}
 	return(0);
 }
@@ -68,7 +69,7 @@ int check_wall(t_game *game)
 void check_doble_p (t_game *game, int x,int y ,int *counter)
 {
 
-	if (ft_strchr("NSWE", game->map[y][x]) )	
+	if (ft_strchr("NSWE", game->map[y][x]))	
 	 {
 		game->player.dir = game->map[y][x];
 		(*counter)++;
@@ -87,35 +88,42 @@ void	parse_space(t_game *game)
 	int c;
 
 	c = 0;
-	y = -1;
+	y = 0;
+	printf("entra parse_space\n");
 	if(check_wall(game))
 		clean_exit(game, throw_exception(MAP_EXCEPTION, ERR_MAP_WALLS, NULL));
-	while (game->map[++y])
+	printf("dopo check_wall\n");
+	while (y < game->map_len)
 	{
-		x = -1;
-		while (game->map[y][++x])
+		x = 0;
+		printf("ciao\n");
+		while (x < (int) ft_strlen(game->map[y]))
 		{
+			printf("zi\n");
 			if (ft_strchr("10NSWED", game->map[y][x]) )
 			{
+				printf("qua\n");
 				check_doble_p(game, x, y, &c);
-				continue ;
 				// printf("\nmap%c\n", game->map_x[y][x]);
 			}
-			if(game->map[y][x] >= 9 && game->map[y][x] <= 13)
+			else if(game->map[y][x] >= 9 && game->map[y][x] <= 13)
 			{
 				game->map[y][x] = 'K';
 				// printf("\nmap/n%c\n", game->map_x[y][x]);
 			}
-			if(game->map[y][x] == ' ')
+			else if(game->map[y][x] == ' ')
 			{
 				game->map[y][x] = 'K';
 				// printf("\nma p%c\n", game->map_x[y][x]);
 			}
-			if(!ft_strchr("10NSWEDK \n", game->map[y][x]))
+			else if(!ft_strchr("10NSWEDK \n", game->map[y][x]))
 					clean_exit(game, throw_exception(MAP_EXCEPTION, ERR_INVALID_CHAR, NULL));
+			printf(">>>>>>>>>>>>>>>>>><\n");
+			x++;
 		}
-		printf("\nmap%s\n", game->map[y]);
+		y++;
 	}
+	printf("esce parse_space\n");
 }
 
 void convert_tab_space(t_game *game)
@@ -123,12 +131,13 @@ void convert_tab_space(t_game *game)
 	int x;
 	int y;
 
-	y = -1;
+	y = 0;
     printf("entra\n");
-	while(game->map[++y])
+	printf("map_len:%d\n", game->map_len);
+	while(y < game->map_len)
 	{
-		x = -1;
-		while(game->map[y][++x])
+		x = 0;
+		while(x < (int) ft_strlen(game->map[y]))
 		{
 			if(game->map[y][x] == 9)
 			{
@@ -137,7 +146,9 @@ void convert_tab_space(t_game *game)
 				game->map[y][++x] = ' ';
 				game->map[y][++x] = ' ';
 			}
+			x++;
 		}
+		y++;
 	}
 
     printf("esce\n");

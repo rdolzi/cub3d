@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 10:46:07 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/18 00:17:43 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/19 02:59:08 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ char	*ft_strdup(char *s1)
 
 	i = 0;
 	len = ft_strlen(s1);
-	s2 = (char *)malloc((len + 1) * sizeof(char));
+	s2 = (char *)malloc((len) * sizeof(char));
 	if (!s2)
 		return (NULL);
 	while (i < len)

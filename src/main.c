@@ -6,17 +6,14 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:50:28 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/15 23:35:36 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/19 02:36:05 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cube.h"
 
 //TODO:
-// 1) MAKEFILE COMPILE V
-// 2) FINISH FUNCTION
-// 3) IMPORT MAPS && TESTS
-// 4) CHECK RENDER FLOW V
+// ./obj?
 
 void	ft_print_mat(char **mat)
 {
