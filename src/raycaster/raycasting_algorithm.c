@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:17:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/02 17:30:04 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/19 04:21:14 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void initialize_raycasting_data(t_game *game, int column)
     t_ray *ray;
     t_player *player;
 
+    printf("in initialize_raycasting_data\n");
     init_ray(game);
     ray = &game->ray;
     player = &game->player;
@@ -55,17 +56,22 @@ void compute_wall_line_height(t_game *game)
 
     ray = &game->ray;
     player = &game->player;
+    printf("in A\n");
+    printf("ray->side_distance.x:%f\n", ray->side_distance.x);
+    printf("ray->delta_distance.x:%f\n", ray->delta_distance.x);
+    printf("ray->side_distance.y:%f\n", ray->side_distance.y);
+    printf("ray->delta_distance.y:%f\n", ray->delta_distance.y);
     if (ray->side == EAST || ray->side == WEST)
         ray->wall_dist = ray->side_distance.x - ray->delta_distance.x;
     else
         ray->wall_dist = ray->side_distance.y - ray->delta_distance.y;
-        
+    printf("ray->wall_dist:%d\n", ray->wall_dist);
     // Calculate line height based on preparation wall distance
     ray->line_height = WIN_HEIGHT / ray->wall_dist;
-    
+    printf("in A2\n");
     // Calculate draw start position
     ray->draw_start = -ray->line_height / 2 + WIN_HEIGHT / 2;
-    
+    printf("in B\n");
     // Adjust draw start if it's outside the screen boundaries
     if (ray->draw_start <= 0)
         ray->draw_start = 0;
@@ -76,7 +82,7 @@ void compute_wall_line_height(t_game *game)
     // Adjust draw end if it's outside the screen boundaries
     if (ray->draw_end >= WIN_HEIGHT)
         ray->draw_end = WIN_HEIGHT - 1;
-
+    printf("in C\n");
     // set wall_x
     if (ray->side == WEST || ray->side == EAST)
 		ray->wall_x = player->position.y + ray->wall_dist * ray->direction.y;
@@ -132,9 +138,13 @@ void raycasting(t_game *game)
     while (column < game->win_width)
     {
         initialize_raycasting_data(game, column); // -> done
+        printf("in set_step_and_side_distance\n");
         set_step_and_side_distance(game); // -> done
+        printf("in perform_digital_differential_analysis\n");
         perform_digital_differential_analysis(game); // -> done
+        printf("in compute_wall_line_height\n");
         compute_wall_line_height(game); // -> done
+        printf("in update_pixels\n");
         update_pixels(game, column);
         column++;
     }

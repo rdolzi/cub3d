@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/19 02:47:10 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/19 03:38:33 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,6 +222,8 @@ void display_menu();
 void parse_cardinal(t_game *game);
 //--parse_color.c
 void parse_color(t_game *game);
+//--parse_player.c
+void parse_player(t_game *game);
 
 //ENGINE
 //--key_bind.c
