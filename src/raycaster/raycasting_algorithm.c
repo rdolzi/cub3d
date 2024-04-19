@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:17:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/19 06:00:42 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/20 01:22:59 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void print_player_stats(t_game *game)
 
     printf("\n\n");
     printf("-------- player stats --------\n");
+    printf("plr->dir:%c\n", plr->dir);
     printf("plr->position.x:%f\n", plr->position.x);
     printf("plr->position.y:%f\n", plr->position.y);
     printf("plr->direction.x:%f\n", plr->direction.x);

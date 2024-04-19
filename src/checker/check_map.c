@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 16:56:47 by flaviobiond       #+#    #+#             */
-/*   Updated: 2024/04/19 06:02:03 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/20 01:29:19 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,12 @@ int check_wall(t_game *game)
 
 void check_doble_p (t_game *game, int x,int y ,int *counter)
 {
-
 	if (ft_strchr("NSWE", game->map[y][x]))	
 	 {
 		game->player.dir = game->map[y][x];
+		game->player.position.x = (double)x + 0.5;
+		game->player.position.y = (double)y + 0.5;
+		game->map[y][x] = 0;
 		(*counter)++;
 	}
 	if(*counter > 1)
