@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/19 05:04:18 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/20 01:51:43 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct s_ray
     // cardinal's .xpm to render
     int cardinal;
     // --
-    int ndc;
+    double ndc;
     int side;
     int wall_dist;
     int wall_x;

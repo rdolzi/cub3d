@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:41:09 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/19 05:05:56 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/20 01:51:52 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	init_ray(t_game *game)
 	game->ray.delta_distance.y = 0.0;
     game->ray.cardinal = -1;
     
-    game->ray.ndc = 0;
+    game->ray.ndc = 0.0;
     game->ray.side = -1;
 	game->ray.wall_dist = 0;
 	game->ray.wall_x = 0;

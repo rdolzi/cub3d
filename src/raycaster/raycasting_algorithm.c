@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:17:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/20 01:22:59 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/20 01:52:29 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void print_ray_stats(t_game *game)
     printf("ray->step.y:%f\n", ray->step.y);
     printf("ray->side_distance.x:%f\n", ray->side_distance.x);
     printf("ray->side_distance.y:%f\n", ray->side_distance.y);
-    printf("ray->ndc:%d\n", ray->ndc);
+    printf("ray->ndc:%f\n", ray->ndc);
     printf("ray->side:%d\n", ray->side);
     printf("ray->wall_dist:%d\n", ray->wall_dist);
     printf("ray->wall_x:%d\n", ray->wall_x);
@@ -82,7 +82,8 @@ void initialize_raycasting_data(t_game *game, int column)
     ray = &game->ray;
     player = &game->player;
 
-	ray->ndc = 2 * column / (double)WIN_WIDTH - 1;
+	ray->ndc = 2 * column / (double) WIN_WIDTH - 1;
+    printf(">>:>:>:ray->ndc:%f\n", ray->ndc);
 	ray->direction.x = player->direction.x + player->cam_plane.x * ray->ndc;
 	ray->direction.y = player->direction.y + player->cam_plane.y * ray->ndc;
 	ray->player_pos.x = (int)player->position.x;
@@ -90,8 +91,8 @@ void initialize_raycasting_data(t_game *game, int column)
 	ray->delta_distance.x = fabs(1 / ray->direction.x);
 	ray->delta_distance.y = fabs(1 / ray->direction.y);
 
-    // print_ray_stats(game);
-    // print_player_stats(game); 
+    print_ray_stats(game);
+    print_player_stats(game); 
 }
 
 /**
@@ -190,8 +191,10 @@ void raycasting(t_game *game)
     int column;
 
     column = 0;
+    printf("game->win_width:%d\n", game->win_width);
     while (column < game->win_width)
     {
+        printf(">>>>>>COLONNA:%d\n", column);
         initialize_raycasting_data(game, column); // -> done
         printf("in set_step_and_side_distance\n");
         set_step_and_side_distance(game); // -> done
