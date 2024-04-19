@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:41:09 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/19 03:47:43 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/19 05:05:56 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,5 @@ void init_game(t_game *game)
     game->player.cam_plane.y = 0.0;
     game->player.move.x = 0.0;
     game->player.move.y = 0.0;
-    // game->player.rotate = 0;
+    game->player.rotate = 0;
 }

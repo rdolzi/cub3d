@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/19 03:38:33 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/19 05:04:18 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,8 @@ int  throw_exception(char *msg, char *specific, char *sub_specific);
 void	*ft_calloc(int count, int size);
 int	ft_atoi(const char *str);
 char	**ft_split(char *s, char c);
+void print_ray_stats(t_game *game);
+void print_player_stats(t_game *game);
 
 //CHECKER
 //--file.c

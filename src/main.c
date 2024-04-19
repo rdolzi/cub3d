@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:50:28 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/19 03:48:51 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/19 05:24:22 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 //TODO:
 // ./obj?
+// check NSWE, map.exc
 
 void	ft_print_mat(char **mat)
 {

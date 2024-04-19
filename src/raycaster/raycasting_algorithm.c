@@ -6,11 +6,61 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:17:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/19 04:21:14 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/19 06:00:42 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
+
+void print_ray_stats(t_game *game)
+{
+    t_ray *ray;
+
+    ray = &game->ray;
+
+    printf("\n\n");
+    printf("--------- ray stats ---------\n");
+    printf("ray->direction.x:%f\n", ray->direction.x);
+    printf("ray->direction.y:%f\n", ray->direction.y);
+    printf("ray->player_pos.x:%f\n", ray->player_pos.x);
+    printf("ray->player_pos.y:%f\n", ray->player_pos.y);
+    printf("ray->delta_distance.x:%f\n", ray->delta_distance.x);
+    printf("ray->delta_distance.y:%f\n", ray->delta_distance.y);
+    printf("ray->step.x:%f\n", ray->step.x);
+    printf("ray->step.y:%f\n", ray->step.y);
+    printf("ray->side_distance.x:%f\n", ray->side_distance.x);
+    printf("ray->side_distance.y:%f\n", ray->side_distance.y);
+    printf("ray->ndc:%d\n", ray->ndc);
+    printf("ray->side:%d\n", ray->side);
+    printf("ray->wall_dist:%d\n", ray->wall_dist);
+    printf("ray->wall_x:%d\n", ray->wall_x);
+    printf("ray->line_height:%d\n", ray->line_height);
+    printf("ray->draw_start:%d\n", ray->draw_start);
+    printf("ray->draw_end:%d\n", ray->draw_end);
+    printf("ray->s:%f\n", ray->s);
+    printf("ray->pos:%f\n", ray->pos);
+    printf("------------------------------\n");
+}
+
+void print_player_stats(t_game *game)
+{
+    t_player *plr;
+
+    plr = &game->player;
+
+    printf("\n\n");
+    printf("-------- player stats --------\n");
+    printf("plr->position.x:%f\n", plr->position.x);
+    printf("plr->position.y:%f\n", plr->position.y);
+    printf("plr->direction.x:%f\n", plr->direction.x);
+    printf("plr->direction.y:%f\n", plr->direction.y);
+    printf("plr->cam_plane.x:%f\n", plr->cam_plane.x);
+    printf("plr->cam_plane.y:%f\n", plr->cam_plane.y);
+    printf("plr->move.x:%f\n", plr->move.x);
+    printf("plr->move.y:%f\n", plr->move.y);
+    printf("plr->rotate:%d\n", plr->rotate);
+    printf("------------------------------\n");
+}
 
 /**
  * @brief Initializes data required for the raycasting algorithm.
@@ -38,6 +88,9 @@ void initialize_raycasting_data(t_game *game, int column)
 	ray->player_pos.y = (int)player->position.y;
 	ray->delta_distance.x = fabs(1 / ray->direction.x);
 	ray->delta_distance.y = fabs(1 / ray->direction.y);
+
+    // print_ray_stats(game);
+    // print_player_stats(game); 
 }
 
 /**
@@ -67,7 +120,8 @@ void compute_wall_line_height(t_game *game)
         ray->wall_dist = ray->side_distance.y - ray->delta_distance.y;
     printf("ray->wall_dist:%d\n", ray->wall_dist);
     // Calculate line height based on preparation wall distance
-    ray->line_height = WIN_HEIGHT / ray->wall_dist;
+    // if (ray->wall_dist > 0) // float exc. perche wall_dist è 0
+        ray->line_height = WIN_HEIGHT / ray->wall_dist;
     printf("in A2\n");
     // Calculate draw start position
     ray->draw_start = -ray->line_height / 2 + WIN_HEIGHT / 2;
@@ -148,4 +202,5 @@ void raycasting(t_game *game)
         update_pixels(game, column);
         column++;
     }
+    printf("esce da raycasting\n");
 }

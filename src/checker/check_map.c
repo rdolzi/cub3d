@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 16:56:47 by flaviobiond       #+#    #+#             */
-/*   Updated: 2024/04/19 03:08:34 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/19 06:02:03 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,10 @@ void	parse_space(t_game *game)
 	while (y < game->map_len)
 	{
 		x = 0;
-		printf("ciao\n");
 		while (x < (int) ft_strlen(game->map[y]))
 		{
-			printf("zi\n");
 			if (ft_strchr("10NSWED", game->map[y][x]) )
 			{
-				printf("qua\n");
 				check_doble_p(game, x, y, &c);
 				// printf("\nmap%c\n", game->map_x[y][x]);
 			}
@@ -118,7 +115,6 @@ void	parse_space(t_game *game)
 			}
 			else if(!ft_strchr("10NSWEDK \n", game->map[y][x]))
 					clean_exit(game, throw_exception(MAP_EXCEPTION, ERR_INVALID_CHAR, NULL));
-			printf(">>>>>>>>>>>>>>>>>><\n");
 			x++;
 		}
 		y++;

@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:10:27 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/17 16:58:17 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/19 04:30:37 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void print_screen(t_game *game)
     int w;
     int h;
 
+    printf("in print_screen\n");
     alloc_img(game, &image);
     h = 0;
     while (h < game->win_height)
