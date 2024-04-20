@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/21 01:08:06 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/21 01:14:16 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
+#define DEBUG 1
 
 #if defined(__APPLE__)
 #define ESC 53

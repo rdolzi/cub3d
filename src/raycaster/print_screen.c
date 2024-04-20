@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:10:27 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/20 03:24:11 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/21 01:19:56 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,7 @@ void print_screen(t_game *game)
         while (w < game->win_width)
         {
             if (game->pixels[h][w] > 0)
-            {
-                printf(">MURO ");
                 set_pixel(&image, w, h, game->pixels[h][w]);
-            }
             else if (h < game->win_height / 2)
                 set_pixel(&image, w, h, game->type[CEALING].hex);
             else

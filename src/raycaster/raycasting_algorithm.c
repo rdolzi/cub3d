@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:17:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/20 03:51:23 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/21 01:19:16 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void initialize_raycasting_data(t_game *game, int column)
 	ray->delta_distance.x = fabs(1 / ray->direction.x);
 	ray->delta_distance.y = fabs(1 / ray->direction.y);
 
-    print_ray_stats(game);
-    print_player_stats(game); 
+    // print_ray_stats(game);
+    // print_player_stats(game); 
 }
 
 /**
@@ -138,8 +138,8 @@ void compute_wall_line_height(t_game *game)
 	ray->wall_x -= floor(ray->wall_x);
 
     printf(">>>>DOPO compute_wall_line_height\n");
-    print_ray_stats(game);
-    print_player_stats(game);
+    // print_ray_stats(game);
+    // print_player_stats(game);
     
 }
 
@@ -171,7 +171,7 @@ void update_pixels(t_game *game, int column)
 			color = (color >> 1) & 8355711;
 		if (color > 0)
         {
-            printf("\n-- game->pixels[%d][%d] --\n", y, x);
+            // printf("\n-- game->pixels[%d][%d] --\n", y, x);
             game->pixels[y][column] = color;
         }
 		y++;

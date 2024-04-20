@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 16:56:47 by flaviobiond       #+#    #+#             */
-/*   Updated: 2024/04/20 01:29:19 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/21 01:17:41 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@ void	check_frame(t_game *game)
 		x = 0;
 		while (x < (int) ft_strlen(game->map[y]))
 		{
-            // printf("game->map[y][x]: %c\n", game->map[y][x]);
 			if (ft_strchr("0NSWED", game->map[y][x]))
 			{
-                // printf("quando entra game->map[y][x]: %c\n", game->map[y][x]);
 				if (game->map[y - 1][x] == ' ' || game->map[y + 1][x] == ' '
 					|| game->map[y + 1][x + 1] == ' ' || game->map[y - 1][x
 					- 1] == ' ' || game->map[y + 1][x - 1] == ' '
@@ -101,20 +99,11 @@ void	parse_space(t_game *game)
 		while (x < (int) ft_strlen(game->map[y]))
 		{
 			if (ft_strchr("10NSWED", game->map[y][x]) )
-			{
 				check_doble_p(game, x, y, &c);
-				// printf("\nmap%c\n", game->map_x[y][x]);
-			}
 			else if(game->map[y][x] >= 9 && game->map[y][x] <= 13)
-			{
 				game->map[y][x] = 'K';
-				// printf("\nmap/n%c\n", game->map_x[y][x]);
-			}
 			else if(game->map[y][x] == ' ')
-			{
 				game->map[y][x] = 'K';
-				// printf("\nma p%c\n", game->map_x[y][x]);
-			}
 			else if(!ft_strchr("10NSWEDK \n", game->map[y][x]))
 					clean_exit(game, throw_exception(MAP_EXCEPTION, ERR_INVALID_CHAR, NULL));
 			x++;

@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 03:50:26 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/19 06:03:23 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/21 01:19:07 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void set_step_and_side_distance(t_game *game)
 		ray->side_distance.y = (ray->player_pos.y + 1.0 - player->position.y) * ray->delta_distance.y;
 	}
     printf(">>>>IN set_step_and_side_distance\n");
-    print_ray_stats(game);
-    print_player_stats(game); 
+    // print_ray_stats(game);
+    // print_player_stats(game); 
 }
 
 void update_ray_position_to_next_wall(t_game *game)
@@ -105,6 +105,6 @@ void perform_digital_differential_analysis(t_game *game)
             hit = 1;
 	}
     printf(">>>>DOPO perform_digital_differential_analysis\n");
-    print_ray_stats(game);
-    print_player_stats(game);
+    // print_ray_stats(game);
+    // print_player_stats(game);
 }
