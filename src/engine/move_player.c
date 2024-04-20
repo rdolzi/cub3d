@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 23:21:32 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/21 01:41:32 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/21 01:54:07 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,17 @@ int check_movement(t_game *game, int y, int x)
     res = 0;
     new_x = (int) game->player.position.x + x * 0.01;
     new_y = (int) game->player.position.y + y * 0.01;
+    printf("new_x:%d|new_y:%d\n", new_x, new_y);
+    printf("game->map[new_y][new_x]:%c\n", game->map[new_y][new_x]);
     if (is_valid(new_x,  new_y) && 
         game->map[new_y][new_x] == '0')
     {
+        printf("ciao\n");
         game->player.position.x = new_x;
         game->player.position.y = new_y;
         res = 1;
     }
+    printf(">esce check_movement, res:%d\n", res);
     return (res);
 }
 
