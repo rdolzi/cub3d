@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:17:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/20 01:52:29 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/20 03:51:23 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,23 +111,15 @@ void compute_wall_line_height(t_game *game)
 
     ray = &game->ray;
     player = &game->player;
-    printf("in A\n");
-    printf("ray->side_distance.x:%f\n", ray->side_distance.x);
-    printf("ray->delta_distance.x:%f\n", ray->delta_distance.x);
-    printf("ray->side_distance.y:%f\n", ray->side_distance.y);
-    printf("ray->delta_distance.y:%f\n", ray->delta_distance.y);
     if (ray->side == EAST || ray->side == WEST)
         ray->wall_dist = ray->side_distance.x - ray->delta_distance.x;
     else
         ray->wall_dist = ray->side_distance.y - ray->delta_distance.y;
-    printf("ray->wall_dist:%d\n", ray->wall_dist);
     // Calculate line height based on preparation wall distance
     // if (ray->wall_dist > 0) // float exc. perche wall_dist è 0
         ray->line_height = WIN_HEIGHT / ray->wall_dist;
-    printf("in A2\n");
     // Calculate draw start position
     ray->draw_start = -ray->line_height / 2 + WIN_HEIGHT / 2;
-    printf("in B\n");
     // Adjust draw start if it's outside the screen boundaries
     if (ray->draw_start <= 0)
         ray->draw_start = 0;
@@ -138,13 +130,17 @@ void compute_wall_line_height(t_game *game)
     // Adjust draw end if it's outside the screen boundaries
     if (ray->draw_end >= WIN_HEIGHT)
         ray->draw_end = WIN_HEIGHT - 1;
-    printf("in C\n");
     // set wall_x
     if (ray->side == WEST || ray->side == EAST)
 		ray->wall_x = player->position.y + ray->wall_dist * ray->direction.y;
 	else
 		ray->wall_x = player->position.x + ray->wall_dist * ray->direction.x;
 	ray->wall_x -= floor(ray->wall_x);
+
+    printf(">>>>DOPO compute_wall_line_height\n");
+    print_ray_stats(game);
+    print_player_stats(game);
+    
 }
 
 void update_pixels(t_game *game, int column)
@@ -154,26 +150,30 @@ void update_pixels(t_game *game, int column)
     int			y;
     int         y1;
     int			color;
-    (void) column;
+    
     ray = &game->ray;
     // parse_texture(game); viene fatto durante la fase di build
 	x = (int)(ray->wall_x * TEXTURE_SIZE);
 	if (((ray->side == EAST || ray->side == WEST) && ray->direction.x < 0)
 		|| ((ray->side == SOUTH || ray->side == NORTH) && ray->direction.y > 0))
 		x = TEXTURE_SIZE - x - 1;
-	ray->s = 1.0 * TEXTURE_SIZE / ray->line_height;
-	ray->pos = (ray->draw_start - WIN_HEIGHT / 2
-			+ ray->line_height / 2) * ray->s;
+	game->pix_step = 1.0 * TEXTURE_SIZE / ray->line_height;
+	game->pix_pos = (ray->draw_start - WIN_HEIGHT / 2
+			+ ray->line_height / 2) * game->pix_step;
 	y = ray->draw_start;
+    printf("qui\n");
 	while (y < ray->draw_end)
 	{
-		y1 = (int)ray->pos & (TEXTURE_SIZE - 1);
-		ray->pos += ray->s;
+		y1 = (int)game->pix_pos & (TEXTURE_SIZE - 1);
+		game->pix_pos += game->pix_step;
 		color = game->textures[ray->side][TEXTURE_SIZE * y1 + x];
 		if (ray->side == NORTH || ray->side == EAST)
 			color = (color >> 1) & 8355711;
 		if (color > 0)
-			game->pixels[y][x] = color;
+        {
+            printf("\n-- game->pixels[%d][%d] --\n", y, x);
+            game->pixels[y][column] = color;
+        }
 		y++;
 	}
 }

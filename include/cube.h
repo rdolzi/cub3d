@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/20 01:51:43 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/20 03:13:03 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,8 @@ typedef struct s_game
     int     map_transferred;
     char    *path;
     // ---
+    double  pix_step;
+    double  pix_pos;
     int     **pixels;
     int     **textures;
     t_ray ray;

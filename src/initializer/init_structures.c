@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:41:09 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/20 01:51:52 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/20 03:48:15 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,24 +51,30 @@ void	init_ray(t_game *game)
 {
 	game->ray.direction.x = 0.0;
 	game->ray.direction.y = 0.0;
+    
 	game->ray.player_pos.x = 0.0;
 	game->ray.player_pos.y = 0.0;
+    
 	game->ray.step.x = 0.0;
 	game->ray.step.y = 0.0;
+    
 	game->ray.side_distance.x = 0.0;
 	game->ray.side_distance.y = 0.0;
+    
 	game->ray.delta_distance.x = 0.0;
 	game->ray.delta_distance.y = 0.0;
-    game->ray.cardinal = -1;
     
     game->ray.ndc = 0.0;
-    game->ray.side = -1;
+    game->ray.cardinal = -1; //?
+    game->ray.side = -1; // ?
 	game->ray.wall_dist = 0;
 	game->ray.wall_x = 0;
+    
 	game->ray.line_height = 0;
 	game->ray.draw_start = 0;
 	game->ray.draw_end = 0;
-
+    
+    
     game->ray.s = 0.0;
     game->ray.pos = 0.0;
 }
@@ -102,4 +108,7 @@ void init_game(t_game *game)
     game->player.move.x = 0.0;
     game->player.move.y = 0.0;
     game->player.rotate = 0;
+
+    game->pix_step = 0.0;
+    game->pix_pos = 0.0;
 }
