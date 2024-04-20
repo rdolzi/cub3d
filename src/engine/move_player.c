@@ -6,19 +6,11 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 23:21:32 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/21 01:07:50 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/21 01:41:32 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
-
-int move_player(t_game *game, int new_y, int new_x)
-{
-    (void) game;
-    (void) new_x;
-    (void) new_y;
-    return 1;
-}
 
 //  the function is responsible for rotating the player's view 
 /**
@@ -28,14 +20,24 @@ int move_player(t_game *game, int new_y, int new_x)
  * rotation speed, adjusting the direction of the player's vision.
  *
  * @param game Pointer to the game data structure containing player information.
- * @param rotspeed The rotation speed for the player's view.
  * @return 1 always indicating the rotation is successful.
  */
 int rotate_player_view(t_game *game)
 {
-    (void)game;
+    t_player	*p;
+    double	tmp;
+    double	rotation;
     
-    return 1;
+    printf(">in rotate_player_view\n");
+    p = &game->player;
+	rotation = 0.055 * game->player.rotate;
+    tmp = p->direction.x;
+	p->direction.x = p->direction.x * cos(rotation) - p->direction.y * sin(rotation);
+	p->direction.y = tmp * sin(rotation) + p->direction.y * cos(rotation);
+	tmp = p->cam_plane.x;
+	p->cam_plane.x = p->cam_plane.x * cos(rotation) - p->cam_plane.y * sin(rotation);
+	p->cam_plane.y = tmp * sin(rotation) + p->cam_plane.y * cos(rotation);
+    return (1);
 }
 
 int is_valid(int x, int y)
@@ -56,6 +58,7 @@ int check_movement(t_game *game, int y, int x)
     int new_y;
     int res;
 
+    printf(">in check_movement\n");
     res = 0;
     new_x = (int) game->player.position.x + x * 0.01;
     new_y = (int) game->player.position.y + y * 0.01;

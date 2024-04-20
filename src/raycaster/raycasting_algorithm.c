@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:17:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/21 01:19:16 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/21 01:44:57 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,12 @@ void initialize_raycasting_data(t_game *game, int column)
     t_ray *ray;
     t_player *player;
 
-    printf("in initialize_raycasting_data\n");
+    // printf("in initialize_raycasting_data\n");
     init_ray(game);
     ray = &game->ray;
     player = &game->player;
 
 	ray->ndc = 2 * column / (double) WIN_WIDTH - 1;
-    printf(">>:>:>:ray->ndc:%f\n", ray->ndc);
 	ray->direction.x = player->direction.x + player->cam_plane.x * ray->ndc;
 	ray->direction.y = player->direction.y + player->cam_plane.y * ray->ndc;
 	ray->player_pos.x = (int)player->position.x;
@@ -137,7 +136,7 @@ void compute_wall_line_height(t_game *game)
 		ray->wall_x = player->position.x + ray->wall_dist * ray->direction.x;
 	ray->wall_x -= floor(ray->wall_x);
 
-    printf(">>>>DOPO compute_wall_line_height\n");
+    // printf(">>>>DOPO compute_wall_line_height\n");
     // print_ray_stats(game);
     // print_player_stats(game);
     
@@ -161,7 +160,6 @@ void update_pixels(t_game *game, int column)
 	game->pix_pos = (ray->draw_start - WIN_HEIGHT / 2
 			+ ray->line_height / 2) * game->pix_step;
 	y = ray->draw_start;
-    printf("qui\n");
 	while (y < ray->draw_end)
 	{
 		y1 = (int)game->pix_pos & (TEXTURE_SIZE - 1);
@@ -191,20 +189,19 @@ void raycasting(t_game *game)
     int column;
 
     column = 0;
-    printf("game->win_width:%d\n", game->win_width);
     while (column < game->win_width)
     {
-        printf(">>>>>>COLONNA:%d\n", column);
+        // printf(">>>>>>COLONNA:%d\n", column);
         initialize_raycasting_data(game, column); // -> done
-        printf("in set_step_and_side_distance\n");
+        // printf("in set_step_and_side_distance\n");
         set_step_and_side_distance(game); // -> done
-        printf("in perform_digital_differential_analysis\n");
+        // printf("in perform_digital_differential_analysis\n");
         perform_digital_differential_analysis(game); // -> done
-        printf("in compute_wall_line_height\n");
+        // printf("in compute_wall_line_height\n");
         compute_wall_line_height(game); // -> done
-        printf("in update_pixels\n");
+        // printf("in update_pixels\n");
         update_pixels(game, column);
         column++;
     }
-    printf("esce da raycasting\n");
+    // printf("esce da raycasting\n");
 }
