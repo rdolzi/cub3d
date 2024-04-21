@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/21 01:14:16 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/21 17:36:18 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ typedef struct s_ray
     // --
     double ndc;
     int side;
-    int wall_dist;
+    double wall_dist;
     int wall_x;
     int line_height;
     int draw_start;

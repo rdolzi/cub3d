@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 23:21:32 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/21 01:54:07 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/21 16:56:05 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,6 @@ int has_moved(t_game *game)
     if (p->move.x != 0 || p->move.y != 0)
         has_moved = check_movement(game, p->direction.x, p->direction.y);
     if (p->rotate != 0)
-        has_moved = rotate_player_view(game); //TODO
+        has_moved = rotate_player_view(game);
     return (has_moved);
 }

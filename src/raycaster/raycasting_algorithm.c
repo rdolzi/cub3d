@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:17:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/21 01:44:57 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/21 17:35:04 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void print_ray_stats(t_game *game)
     printf("ray->side_distance.y:%f\n", ray->side_distance.y);
     printf("ray->ndc:%f\n", ray->ndc);
     printf("ray->side:%d\n", ray->side);
-    printf("ray->wall_dist:%d\n", ray->wall_dist);
+    printf("ray->wall_dist:%f\n", ray->wall_dist);
     printf("ray->wall_x:%d\n", ray->wall_x);
     printf("ray->line_height:%d\n", ray->line_height);
     printf("ray->draw_start:%d\n", ray->draw_start);
