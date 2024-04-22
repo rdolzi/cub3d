@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 23:21:32 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/22 15:01:18 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/22 16:04:29 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int rotate_player_view(t_game *game)
     return (1);
 }
 
-int is_valid(int x, int y)
+int is_valid(t_game *game, int x, int y)
 {
     double safe_net;
 
@@ -49,6 +49,8 @@ int is_valid(int x, int y)
 		return (0);
 	if (y < safe_net || y >= WIN_HEIGHT  - 1 * safe_net)
 		return (0);
+    if (game->map[(int)y][(int)x] == '1')
+        return (0);
     return (1);
 }
 
@@ -58,12 +60,12 @@ int move_player(t_game *game, int x, int y)
     double new_y;
     t_player *p;
 
-    printf("in move_player!\n");
     p = &game->player;
-    printf("p->position.x:%f\n", p->position.x);
-    printf("p->position.y:%f\n", p->position.y);
-    printf("p->direction.x:%f\n", p->direction.x);
-    printf("p->direction.y:%f\n", p->direction.y);
+    // printf("in move_player!\n");
+    // printf("p->position.x:%f\n", p->position.x);
+    // printf("p->position.y:%f\n", p->position.y);
+    // printf("p->direction.x:%f\n", p->direction.x);
+    // printf("p->direction.y:%f\n", p->direction.y);
     if (p->move.x == 1 || p->move.x == -1)
     {
         new_x = p->position.x + (p->direction.y * x) * 0.05;
@@ -74,11 +76,11 @@ int move_player(t_game *game, int x, int y)
         new_x = p->position.x + (p->direction.x * x) * 0.05;
         new_y = p->position.y + (p->direction.y * y) * 0.05;
     }
-    printf("new_x:%f\n", new_x);
-    printf("new_y:%f\n", new_y);
+    // printf("new_x:%f\n", new_x);
+    // printf("new_y:%f\n", new_y);
     
-    printf("game->map[(int)new_y][(int)new_x]:%d\n", game->map[(int)new_y][(int)new_x]);
-    if (is_valid(new_x,  new_y))// &&game->map[(int)new_y][(int)new_x] == '0')
+    // printf("game->map[(int)new_y][(int)new_x]:%c\n", game->map[(int)new_y][(int)new_x]);
+    if (is_valid(game, new_x,  new_y))// &&game->map[(int)new_y][(int)new_x] == '0')
     {
         printf("ciao\n");
         game->player.position.x = new_x;

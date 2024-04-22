@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 03:50:26 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/21 23:54:39 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/22 15:55:45 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void perform_digital_differential_analysis(t_game *game)
 		 // Adding buffer margins to handle map boundaries
         if (ray->player_pos.y < 0.25 
             || ray->player_pos.x < 0.25
-            || ray->player_pos.y > game->win_height - 0.25
+            || ray->player_pos.y > game->win_height - 1.25
             || ray->player_pos.x > game->win_width - 1.25)
             hit = 1;
         else if (game->map[(int)ray->player_pos.y][(int)ray->player_pos.x] == '1')
