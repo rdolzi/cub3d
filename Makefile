@@ -15,8 +15,17 @@ FLAGS = -Wextra -Werror -Wall
 
 CC = gcc ${FLAGS}
 RM = rm -f
-MLX_DIR = mlx
-MLX_MAKE = $(MLX_DIR)/Makefile
+
+# Determine platform (Linux or macOS)
+UNAME_S = $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+    MLX_DIR = mlx_linux
+    MLX_FLAGS = $(MLX_DIR)/libmlx.a -Lmlx -lX11 -lm
+else
+    MLX_DIR = mlx_mac
+    MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+endif
+
 
 OBJS = ${SRCS:.c=.o} ${GNL:%.c=%.o} ${BUILDER:%.c=%.o} ${CHECKER:%.c=%.o} ${ENGINE:%.c=%.o} ${INITIALIZER:%.c=%.o} ${RAYCASTER:%.c=%.o} ${UTILS:%.c=%.o}
 
@@ -28,7 +37,7 @@ CYAN	=	\033[36m
 BOLD	=	\033[1m
 UNDER	=	\033[4m
 END		=	\033[0m
-RESET	= \033[0;0m
+RESET	=   \033[0;0m
 
 SRC_COUNT     = 0
 SRC_COUNT_TOT := $(shell find $(SRC_DIRS) -name '*.c' | wc -l) 
@@ -47,7 +56,11 @@ OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,${SRCS}) \
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(@D)
-	@$(CC) -Imlx -g -c $< -o $@
+	@if [ "$(UNAME_S)" = "Linux" ]; then \
+		$(CC) -g -c $< -o $@; \
+	else \
+		$(CC) -Imlx -g -c $< -o $@; \
+	fi
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(eval SRC_PCT = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT)))
 	@printf "\r$(BOLD)$(GREEN)[%d/%d] 😊(%d%%)$(END)$(BOLD)$(BLUE)%-40s" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT) $<
@@ -61,7 +74,7 @@ $(NAME): $(OBJS)
 		printf "."; \
 		sleep 1; \
 	 done; \
-	 $(CC) $(OBJS) -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -o $(NAME); \
+	 $(CC) $(OBJS) $(MLX_FLAGS) -o $(NAME); \
 	 printf "\n"; \
 	 printf "\n"; \
 	 printf "\n"; \
@@ -82,9 +95,9 @@ all: $(NAME)
 clean:
 	@($(MAKE) -C $(MLX_DIR) clean > /dev/null 2>&1)
 	${RM} ${OBJS}
+	${RM} -r ${OBJ_DIR}
 
 fclean: clean
-	${RM} -r ${OBJ_DIR}
 	${RM} ${NAME}
 	
 re: fclean all

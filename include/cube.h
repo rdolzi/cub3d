@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/21 17:36:18 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/23 19:25:30 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <fcntl.h>
 #include <stdbool.h>
 #include <string.h>
-# include "../mlx/mlx.h"
 #include "./error.h"
 #include "./get_next_line.h"
 #define WIN_HEIGHT 480
@@ -30,6 +29,7 @@
 #define DEBUG 1
 
 #if defined(__APPLE__)
+# include "../mlx_mac/mlx.h"
 #define ESC 53
 #define W 13
 #define A 0
@@ -40,6 +40,7 @@
 #define LEFT 123
 #define RIGHT 124
 #elif defined(__linux__) || defined(__gnu_linux__)
+# include "../mlx_linux/mlx.h"
 #define ESC 65307
 #define W 119
 #define A 97
