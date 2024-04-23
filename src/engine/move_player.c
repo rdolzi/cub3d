@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 23:21:32 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/22 16:04:29 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/23 20:57:09 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,11 +127,11 @@ int has_moved(t_game *game)
     p = &game->player;
     if (p->move.x == -1)
         has_moved = move_player(game, 1, -1);
-    if (p->move.x == 1)
+    else if (p->move.x == 1)
         has_moved = move_player(game, -1, 1);
-    if (p->move.y == -1)
+    else if (p->move.y == -1)
         has_moved = move_player(game, 1, 1);
-    if (p->move.y == 1)
+    else if (p->move.y == 1)
         has_moved = move_player(game, -1, -1);
     if (p->rotate != 0)
         has_moved = rotate_player_view(game);
