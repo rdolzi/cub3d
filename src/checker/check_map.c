@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 16:56:47 by flaviobiond       #+#    #+#             */
-/*   Updated: 2024/04/21 01:17:41 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/23 21:21:05 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ int check_wall(t_game *game)
 	return(0);
 }
 
-void check_doble_p (t_game *game, int x,int y ,int *counter)
+void check_double_p (t_game *game, int x,int y ,int *counter)
 {
 	if (ft_strchr("NSWE", game->map[y][x]))	
 	 {
 		game->player.dir = game->map[y][x];
 		game->player.position.x = (double)x + 0.5;
 		game->player.position.y = (double)y + 0.5;
-		game->map[y][x] = 0;
+		game->map[y][x] = '0';
 		(*counter)++;
 	}
 	if(*counter > 1)
@@ -99,7 +99,7 @@ void	parse_space(t_game *game)
 		while (x < (int) ft_strlen(game->map[y]))
 		{
 			if (ft_strchr("10NSWED", game->map[y][x]) )
-				check_doble_p(game, x, y, &c);
+				check_double_p(game, x, y, &c);
 			else if(game->map[y][x] >= 9 && game->map[y][x] <= 13)
 				game->map[y][x] = 'K';
 			else if(game->map[y][x] == ' ')
