@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:43:38 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/24 00:21:31 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 00:26:10 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,19 @@ void	free_matrix(void **matrix)
 	int	i;
 
 	i = 0;
-    if (matrix == NULL)
-        return ;
-	while (matrix[i])
+    if(matrix)
     {
-        free(matrix[i]);
-        i++;
-    }	
-	free(matrix);
-    matrix = NULL;
+	    while (matrix[i])
+        {
+            free(matrix[i]);
+            i++;
+        }	
+	    free(matrix);
+        matrix = NULL;
+    }
+    return ;
 }
+
 
 // compone un messaggio di errore, a partire dalle stringe input e stampa su fd 2.
 // msg non puoi essere NULL, specific e sub_specific sono opzionali.

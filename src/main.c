@@ -6,15 +6,15 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:50:28 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/20 03:24:28 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 00:17:23 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cube.h"
 
-//TODO:
-// ./obj?
-// check NSWE, map.exc
+//valgrind --leak-check=full --track-origins=yes ./cub3d assets/maps/1.cub
+
+
 
 void	ft_print_mat(char **mat)
 {
@@ -41,13 +41,15 @@ void build_game(t_game *game)
         clean_exit(game, throw_exception(ERR_ARGC, NULL, NULL));
     // 0)INIT STRUCTURES TO DEFAULT VALUES
     init_game(game); // -> ??
-    //      0.A) MLX CONFIGURATION  ->done
-    //      0.B)init mlx && win
-    set_mlx(game);
+
 
     // 1)CHECK ARGC && .CUB EXTENSION
     check_input(game, CUB, game->argv[1]);
-
+    
+    //      1.A) MLX CONFIGURATION  ->done
+    //      1.B)init mlx && win
+    set_mlx(game);
+    
     // 2.A)initial_parse file cub
     //      2.A.1)read line numbers
     //      2.A.2) alloc **matr && read file      ->done

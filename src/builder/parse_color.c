@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 02:11:15 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/18 20:23:24 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 00:03:54 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int *char_matrix_to_int(t_game *game, char **mat)
         rgb[i] = ft_atoi(mat[i]);
         i++;
     }
+    free_matrix((void **)mat);
     return (rgb);
 }
 
@@ -101,6 +102,7 @@ void convert_in_hexadecimal(t_game *game, int color)
         convert_rgb_to_hex(game, color, rgb); // converte rgb in hexadecimal
     else
         clean_exit(game, throw_exception(MAP_EXCEPTION, ERR_MAP_COLOR, NULL));
+    free(rgb);
 }
 
 //parse_colors

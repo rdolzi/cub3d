@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:58:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/19 02:52:44 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 00:14:51 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void insert_map(t_game *game, int idx)
 
     i = 0;
     game->map_transferred = 1;
-    game->map = (char **)ft_calloc(game->n_lines_file - idx, sizeof(char *));
+    game->map = (char **)ft_calloc(game->n_lines_file - idx + 1, sizeof(char *));
     // game->map = (char **)malloc(sizeof(char *) * (game->n_lines_file - idx));
     printf("game->n_lines_file - idx:%d\n", game->n_lines_file - idx + 1);
     if (game->map == NULL)
@@ -91,7 +91,7 @@ void insert_map(t_game *game, int idx)
     while (idx < game->n_lines_file)
     {
         printf("inserting %d line: %s", i, game->raw_file[idx]);
-        game->map[i] = ft_strdup(game->raw_file[idx]);
+        game->map[i] = strdup(game->raw_file[idx]);
         i++;
         idx++;
     }
