@@ -6,13 +6,13 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:50:28 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 00:17:23 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 01:18:37 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cube.h"
 
-//valgrind --leak-check=full --track-origins=yes ./cub3d assets/maps/1.cub
+//valgrind --leak-check=full --track-origins=yes ./cub3d assets/maps/1.cub 
 
 
 
