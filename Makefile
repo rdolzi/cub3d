@@ -20,7 +20,7 @@ RM = rm -f
 UNAME_S = $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
     MLX_DIR = mlx_linux
-    MLX_FLAGS = $(MLX_DIR)/libmlx.a -Lmlx -lX11 -lm
+    MLX_FLAGS = -L$(MLX_DIR) -L ./libft -lft -L ./mlx_linux -lmlx -L/usr/lib -lXext -lX11 -lm -lz
 else
     MLX_DIR = mlx_mac
     MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
