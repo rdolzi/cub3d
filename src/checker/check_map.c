@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 16:56:47 by flaviobiond       #+#    #+#             */
-/*   Updated: 2024/04/23 21:21:05 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/25 23:34:00 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,13 @@ int check_wall(t_game *game)
 	while(i < game->map_len)
 	{
 		if(game->map[i][0] != 32 && game->map[i][0] != '1' && !(game->map[i][0] >= 9 && game->map[i][0] <= 13))
+		return(-1);
+		i++;
+	}
+	i = 0;
+	while(i < (int)ft_strlen(game->map[0]))
+	{
+		if(game->map[0][i] != 32 && game->map[0][i] != '1' && !(game->map[0][i] >= 9 && game->map[0][i] <= 13))
 		return(-1);
 		i++;
 	}
