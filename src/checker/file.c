@@ -6,12 +6,13 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:47:57 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 00:54:40 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 01:33:41 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
 
+// CHECK ARGC && .CUB EXTENSION
 void check_input(t_game *game, char *format, char *path)
 {
     int i;

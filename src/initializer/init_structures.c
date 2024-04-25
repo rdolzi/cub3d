@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:41:09 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/21 17:36:15 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 01:33:27 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	init_ray(t_game *game)
     game->ray.pos = 0.0;
 }
 
+// INIT STRUCTURES TO DEFAULT VALUES
 void init_game(t_game *game)
 {
     // init default values

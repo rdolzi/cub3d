@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:43:38 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 01:06:30 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 01:39:38 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	free_matrix(void **matrix)
         matrix = NULL;
     }
     return ;
-
 }
 
 
-// compone un messaggio di errore, a partire dalle stringe input e stampa su fd 2.
+// compone un messaggio di errore
+// a partire dalle stringe input e stampa su fd 2.
 // msg non puoi essere NULL, specific e sub_specific sono opzionali.
 int throw_exception(char *msg, char *specific, char *sub_specific)
 {
@@ -63,9 +63,6 @@ void free_color_and_walls(t_game *game)
     
 }
 
-
-// exit status SUCCESS -> msg == NULL
-// exit status ERROR -> msg != NULL
 void clean_exit(t_game *game, int exit_status)
 {
     free_matrix((void **)game->map);

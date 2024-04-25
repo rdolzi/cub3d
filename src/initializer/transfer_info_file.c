@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:58:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 00:14:51 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 01:34:29 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,13 @@ void transfer_line(t_game *game, int idx)
 //     }
 // }
 
+// 2.A)initial_parse file cub
+    //      2.A.1)read line numbers
+    //      2.A.2) alloc **matr && read file      ->done
+    // 2.B)transfer information from file to structures ->done
+    //      2.B.1)transfer cardinals
+    //      2.B.2)transfer color
+    //      2.B.3)transfer map
 void transfer_info_file(t_game *game)
 {
     int i;
