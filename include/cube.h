@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/23 19:25:30 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 00:53:35 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 #include <string.h>
 #include "./error.h"
 #include "./get_next_line.h"
-#define WIN_HEIGHT 480
-#define WIN_WIDTH 640
+#define WIN_HEIGHT 960
+#define WIN_WIDTH 1280
 #define TEXTURE_SIZE 64
 
 #define EXIT_SUCCESS 0

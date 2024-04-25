@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:43:38 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 00:33:00 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 01:06:30 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,15 @@ void free_color_and_walls(t_game *game)
 // exit status ERROR -> msg != NULL
 void clean_exit(t_game *game, int exit_status)
 {
-    if (game->mlx && game->mlx_win)
-    {
-        mlx_destroy_window(game->mlx, game->mlx_win);
-        free(game->mlx);
-    }
     free_matrix((void **)game->map);
     free_matrix((void **)game->raw_file);
     free_matrix((void **)game->pixels);
     free_matrix((void **)game->textures);
     free_color_and_walls(game);
+    if (game->mlx && game->mlx_win)
+    {
+        mlx_destroy_window(game->mlx, game->mlx_win);
+        free(game->mlx);
+    }
     exit(exit_status);
 }

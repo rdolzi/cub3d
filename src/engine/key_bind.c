@@ -6,11 +6,18 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:03:17 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/03/17 16:48:19 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 00:59:51 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
+
+int quit(t_game *game)
+{
+    ft_printstr_fd("Player left the game!\n", 1);
+    clean_exit(game, 0);
+    return (0);
+}
 
 int key_press(int keycode, t_game *game)
 {
@@ -27,7 +34,7 @@ int key_press(int keycode, t_game *game)
     if (keycode == RIGHT)
         game->player.rotate = 1;
     else if (keycode == ESC)
-        clean_exit(game, (int) write(1, "Player left the game!", 21) * 0);
+        quit(game);
     return (0);
 }
 
@@ -45,12 +52,6 @@ int key_release(int keycode, t_game *game)
         game->player.rotate = 0;
     if (keycode == RIGHT)
         game->player.rotate = 0;
-    return (0);
-}
-
-int quit(t_game *game)
-{
-    clean_exit(game, (int)write(1, "Player quit the game!", 21) * 0);
     return (0);
 }
 

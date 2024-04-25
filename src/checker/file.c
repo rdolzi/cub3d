@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:47:57 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/21 01:17:55 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 00:54:40 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void read_file(t_game *game)
     char *str;
 
     i = 0;
-    game->raw_file = (char **)malloc(sizeof(char *) * (game->n_lines_file));
+    game->raw_file = (char **)ft_calloc(sizeof(char *) , (game->n_lines_file + 1));
     if (game->raw_file == NULL)
         clean_exit(game, throw_exception(SYSTEM_EXCEPTION, ERR_MALLOC, NULL));
     fd = open(game->path, O_RDONLY);
