@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:43:38 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 00:26:10 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 00:33:00 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,18 @@ void	free_matrix(void **matrix)
 	int	i;
 
 	i = 0;
+	while (matrix[i])
+    {
+        free(matrix[i]);
+        i++;
+    }	
     if(matrix)
     {
-	    while (matrix[i])
-        {
-            free(matrix[i]);
-            i++;
-        }	
 	    free(matrix);
         matrix = NULL;
     }
     return ;
+
 }
 
 
@@ -47,15 +48,21 @@ int throw_exception(char *msg, char *specific, char *sub_specific)
 
 void free_color_and_walls(t_game *game)
 {
-    int i;
-
-    i = 0;
-    while (i < 2)
-        free(game->type[i].path);
-    i = 0;
-    while (i < 4)
-        free(game->walls[i].path);
+   if(game->type[0].path)
+        free(game->type[0].path);
+     if(game->type[1].path)
+        free(game->type[1].path);
+    if(game->walls[0].path)
+        free(game->walls[0].path);
+    if(game->walls[1].path)
+        free(game->walls[1].path);
+    if(game->walls[2].path)
+        free(game->walls[2].path);
+    if(game->walls[3].path)
+        free(game->walls[3].path);
+    
 }
+
 
 // exit status SUCCESS -> msg == NULL
 // exit status ERROR -> msg != NULL
