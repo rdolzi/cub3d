@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 01:03:17 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 02:09:35 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 04:08:03 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int key_release(int keycode, t_game *game)
         game->player.move.y = 0;
     if (keycode == A)
         game->player.move.x = 0;
-    if (keycode == LEFT)
+    if (keycode == LEFT )
         game->player.rotate = 0;
     if (keycode == RIGHT)
         game->player.rotate = 0;
@@ -61,4 +61,5 @@ void key_bind(t_game *game)
     mlx_hook(game->mlx_win, 17, 0, quit, game);
     mlx_hook(game->mlx_win, 2, 1L << 0, key_press, game);
     mlx_hook(game->mlx_win, 3, 1L << 1, key_release, game);
+    mlx_hook(game->mlx_win, 6, 1L << 6, mouse_control, game);
 }
