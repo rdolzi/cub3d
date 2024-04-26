@@ -6,14 +6,15 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:58:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 01:34:29 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 02:08:50 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
 
 // prende una stringa in input
-// ritorna e alloca una nuova stringa senza eventuali spazi(inizio e fine)
+// ritorna e alloca una nuova stringa senza
+// eventuali spazi(inizio e fine)
 char *remove_spaces(char *str)
 {
     int i;
@@ -23,16 +24,12 @@ char *remove_spaces(char *str)
     new_str = NULL;
     while (ft_isspace(str[i]) != 0)
     {
-        // printf("str[%d]:%c ", i, str[i]);
         str++;
         i++;
     }
     i = 0;
     while (ft_isspace(str[i]) == 0)
-    {
-        // printf("str[%d]:%c ", i, str[i]);
         i++;
-    }
     new_str = (char *)ft_calloc(i + 1, 1);
     i = 0;
     while (ft_isspace(str[i]) == 0)
@@ -43,60 +40,45 @@ char *remove_spaces(char *str)
     return (new_str);
 }
 
-// F 220,100,0 (possono essere presenti spazi vicino le virgole)
-// la funzione setta solo la str delle informazioni RGB senza fare il parse delle informazioni stesse.
+// la funzione setta solo la str delle informazioni
+// RGB senza fare il parse delle informazioni stesse.
 // il puntatore sta sulla prima lettera del cardinal.
 void insert_color(t_game *game, int type_c, char *str)
 {
     str++;
     game->type[type_c].path = remove_spaces(str);
-    printf("game->type[type_c].path:%s\n", game->type[type_c].path);
 }
 
-// typedef struct s_img
-// {
-//     char *path;
-//     void *img;
-//     void *addr;
-//     int bpp;
-//     int line_length;
-//     int endian;
-// } t_img;
 // esempio texture NORTH WALL
 // NO ./path_to_the_north_texture
-// la funzione setta solo il path dell .xpm senza fare il parse delle informazioni
+// la funzione setta solo il path dell .xpm senza fare
+// il parse delle informazioni
 // il puntatore sta sulla prima lettera del cardinal.
 // primi 2 str++ saltano il riferimento al cardinal
 void insert_cardinal(t_game *game, int cardinal, char *str)
 {
-    printf("in insert_cardinal|str:%s\n", str);
     str++;
     str++;
     game->walls[cardinal].path = remove_spaces(str);
-    printf("game->walls[cardinal].path:%s\n", game->walls[cardinal].path);
 }
 
 void insert_map(t_game *game, int idx)
 {
     int i;
-    // char *str;
 
     i = 0;
     game->map_transferred = 1;
     game->map = (char **)ft_calloc(game->n_lines_file - idx + 1, sizeof(char *));
-    // game->map = (char **)malloc(sizeof(char *) * (game->n_lines_file - idx));
     printf("game->n_lines_file - idx:%d\n", game->n_lines_file - idx + 1);
     if (game->map == NULL)
         clean_exit(game, throw_exception(SYSTEM_EXCEPTION, ERR_MALLOC, NULL));
     while (idx < game->n_lines_file)
     {
-        printf("inserting %d line: %s", i, game->raw_file[idx]);
         game->map[i] = strdup(game->raw_file[idx]);
         i++;
         idx++;
     }
     game->map_len = i;
-    printf("\n");
 }
 
 void transfer_line(t_game *game, int idx)
@@ -106,18 +88,12 @@ void transfer_line(t_game *game, int idx)
 
     i = 0;
     str = game->raw_file[idx];
-    printf("game->raw_file[idx:%d]:%s\n", idx, game->raw_file[idx]);
     while (str[i] && ft_isspace(str[i]))
         i++;
-    printf("str[i:%d]:%s\n", i, &str[i]);
-    printf("strlen:%d\n", (int)ft_strlen(str));
-    if (i == (int) ft_strlen(str)) // or len -1 ?
+    if (i == (int) ft_strlen(str))
         return ;
     if (!ft_strncmp("NO", &str[i], 2))
-    {
-        printf("entra (!ft_strncmp(NO, &str[i], 2))\n");
         insert_cardinal(game, NORTH, &str[i]);
-    }
     else if (!ft_strncmp("EA", &str[i], 2))
         insert_cardinal(game, EAST, &str[i]);
     else if (!ft_strncmp("SO", &str[i], 2))
@@ -125,58 +101,34 @@ void transfer_line(t_game *game, int idx)
     else if (!ft_strncmp("WE", &str[i], 2))
         insert_cardinal(game, WEST, &str[i]);
     else if (!ft_strncmp("F", &str[i], 1))
-    {
-        printf("entra (!ft_strncmp(F, &str[i], 2))\n");
         insert_color(game, FLOOR, &str[i]);
-    }
     else if (!ft_strncmp("C", &str[i], 1))
         insert_color(game, CEALING, &str[i]);
     else if (ft_strchr("10", str[i]) || (ft_strchr("NSWE", str[i]) 
         && str[i + 1] && ft_strchr("10 \n\t\v\r\f", str[i + 1])))
-        {
-            printf("entra in insert_map, riga: %d\n",i);
             insert_map(game, idx);
-        }
     else
         clean_exit(game, throw_exception(SYSTEM_EXCEPTION, ERR_ELEMENT_NOT_FOUND, NULL));
 }
 
-// transfer informations from raw_file to game's structure
-// without validation
-// void transfer_info(t_game *game)
-// {
-//     int i;
 
-//     i = 0;
-//     while (i < game->n_lines_file)
-//     {
-//         transfer_line(game, i);
-//         i++;
-//     }
-// }
-
-// 2.A)initial_parse file cub
-    //      2.A.1)read line numbers
-    //      2.A.2) alloc **matr && read file      ->done
-    // 2.B)transfer information from file to structures ->done
-    //      2.B.1)transfer cardinals
-    //      2.B.2)transfer color
-    //      2.B.3)transfer map
+// initial_parse file cub
+//      2.A.1)read line numbers
+//      2.A.2) alloc **matr && read file
+// 2.B)transfer information from file to structures
+//      2.B.1)transfer cardinals
+//      2.B.2)transfer color
+//      2.B.3)transfer map
 void transfer_info_file(t_game *game)
 {
     int i;
 
     i = 0;
-    // set file path
     game->path = game->argv[1];
-    // count and set file lines
-    count_file_lines(game); // count_lines?
-    // read and set file
+    count_file_lines(game);
     read_file(game);
-    // transfer_info(game);
     while (i < game->n_lines_file && game->map_transferred != 1)
     {
-        printf("transfer %d line \n", i);
         transfer_line(game, i);
         i++;
     }

@@ -6,13 +6,11 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:41:09 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 01:33:27 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 02:04:52 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
-
-// refactor init, con una func per ogni singola structure
 
 void init_image(t_img *image)
 {
@@ -31,13 +29,11 @@ void init_internal_structures(t_game *game)
     int i;
 
     i = 0;
-    // NSWE
     while (i < 4)
     {
         init_image(&game->walls[i]);
         i++;
     }
-    // FLOOR - CEALING
     i = 0;
     while (i < 2)
     {
@@ -51,38 +47,44 @@ void	init_ray(t_game *game)
 {
 	game->ray.direction.x = 0.0;
 	game->ray.direction.y = 0.0;
-    
 	game->ray.player_pos.x = 0.0;
 	game->ray.player_pos.y = 0.0;
-    
 	game->ray.step.x = 0.0;
 	game->ray.step.y = 0.0;
-    
 	game->ray.side_distance.x = 0.0;
 	game->ray.side_distance.y = 0.0;
-    
 	game->ray.delta_distance.x = 0.0;
 	game->ray.delta_distance.y = 0.0;
-    
     game->ray.ndc = 0.0;
-    game->ray.cardinal = -1; //?
-    game->ray.side = -1; // ?
+    game->ray.cardinal = -1;
+    game->ray.side = -1;
 	game->ray.wall_dist = 0.0;
 	game->ray.wall_x = 0;
-    
 	game->ray.line_height = 0;
 	game->ray.draw_start = 0;
 	game->ray.draw_end = 0;
-    
-    
     game->ray.s = 0.0;
     game->ray.pos = 0.0;
+}
+
+void init_player(t_game *game)
+{
+    game->player.position.x = 0.0;
+    game->player.position.y = 0.0;
+    game->player.direction.x = 0.0;
+    game->player.direction.y = 0.0;
+    game->player.cam_plane.x = 0.0;
+    game->player.cam_plane.y = 0.0;
+    game->player.move.x = 0.0;
+    game->player.move.y = 0.0;
+    game->player.rotate = 0;
+    game->pix_step = 0.0;
+    game->pix_pos = 0.0;
 }
 
 // INIT STRUCTURES TO DEFAULT VALUES
 void init_game(t_game *game)
 {
-    // init default values
     game->mlx = NULL;
     game->mlx_win = NULL;
     game->win_height = WIN_HEIGHT;
@@ -99,17 +101,5 @@ void init_game(t_game *game)
     game->textures = NULL;
     init_internal_structures(game);
     init_ray(game);
-    // init_player
-    game->player.position.x = 0.0;
-    game->player.position.y = 0.0;
-    game->player.direction.x = 0.0;
-    game->player.direction.y = 0.0;
-    game->player.cam_plane.x = 0.0;
-    game->player.cam_plane.y = 0.0;
-    game->player.move.x = 0.0;
-    game->player.move.y = 0.0;
-    game->player.rotate = 0;
-
-    game->pix_step = 0.0;
-    game->pix_pos = 0.0;
+    init_player(game);
 }

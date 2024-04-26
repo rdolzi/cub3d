@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:50:28 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 01:53:07 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 02:02:56 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 //valgrind --leak-check=full --track-origins=yes ./cub3d assets/maps/1.cub 
 
-//todo
+//TODO:
 //menu
 // grandezza window diversa per mac e linux
+// versione intra senza file .txt, gitignore
+// aggiungere mappe, xml
 
 void build_game(t_game *game)
 {
