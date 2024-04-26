@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:50:28 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 01:35:56 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 01:53:07 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 //todo
 //menu
+// grandezza window diversa per mac e linux
 
 void build_game(t_game *game)
 {

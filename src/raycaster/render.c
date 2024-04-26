@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:33:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/21 01:43:34 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 02:00:30 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void restore_rendering(t_game *game)
     int	i;
 
     i = 0;
-	// printf("in restore_rendering\n");
     init_ray(game);
 	if (game->pixels)
 		free_matrix((void **)game->pixels);
@@ -59,27 +58,26 @@ void restore_rendering(t_game *game)
 /**
  * @brief Renders the entire screen.
  *
- * This function renders the entire screen by iterating through each pixel and determining its color based on the raycasting results, producing a 3D perspective view of the scene for the player.
+ * This function renders the entire screen by iterating
+ * through each pixel and determining its color based on
+ * the raycasting results, producing a 3D perspective view
+ * of the scene for the player.
  *
- * @param game Pointer to the game data structure containing rendering information.
+ * @param game Pointer to the game data structure containing
+ * 			   rendering information.
  */
 void render_screen(t_game *game)
 {
-    restore_rendering(game); // -> done
-    raycasting(game); // define movespeed
-    // spostare fps fuori if has_moved?
-    // update_fps(game); // calculate and print fps in image's frame
-    print_screen(game); // -> done
+    restore_rendering(game);
+    raycasting(game);
+    print_screen(game);
 }
 
 // mlx_loop_hook's function
 // will render a new image only if player has moved
 int render(t_game *game)
 {
-    if (has_moved(game)) // -> so long logic
-	{
+    if (has_moved(game))
 		render_screen(game);
-		printf("\n\n---- IL PLAYER SI è MOSSO! ----\n");
-	} 
     return (0);
 }
