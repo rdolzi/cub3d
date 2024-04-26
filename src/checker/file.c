@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:47:57 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 01:33:41 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 04:06:15 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,18 @@ void check_input(t_game *game, char *format, char *path)
     int i;
     
     i = (int)ft_strlen(path);
-    printf("path:%s\n", path);
     if (!strcmp(format,CUB)) // STRNCMP?
     {
-        printf("ENTRA IN CUB\n");
         if (!(path[i - 1] == 'b' && path[i - 2] == 'u' && path[i - 3] == 'c' && path[i - 4] == '.'))
             clean_exit(game, throw_exception(FILE_EXCEPTION, ERR_FILE_FORMAT, CUB));
     }
     else if (!strcmp(format,XPM))
     {
-        printf("ENTRA IN XPM\n");
         if (!(path[i - 1] == 'm' && path[i - 2] == 'p' && path[i - 3] == 'x' && path[i - 4] == '.'))
             clean_exit(game, throw_exception(FILE_EXCEPTION, ERR_FILE_FORMAT, XPM));
-        printf("ESCE IN XPM\n");
     }
 }
-// calloc?
+
 void read_file(t_game *game)
 {
     int fd;

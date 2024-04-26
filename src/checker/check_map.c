@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 16:56:47 by flaviobiond       #+#    #+#             */
-/*   Updated: 2024/04/26 02:19:31 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 04:05:46 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	check_frame(t_game *game)
 		}
         y++;
 	}
-    printf("esce da check_frame\n");
 }
 
 int check_wall(t_game *game)
@@ -97,10 +96,8 @@ void	parse_space(t_game *game)
 
 	c = 0;
 	y = 0;
-	printf("entra parse_space\n");
 	if(check_wall(game))
 		clean_exit(game, throw_exception(MAP_EXCEPTION, ERR_MAP_WALLS, NULL));
-	printf("dopo check_wall\n");
 	while (y < game->map_len)
 	{
 		x = 0;
@@ -118,7 +115,6 @@ void	parse_space(t_game *game)
 		}
 		y++;
 	}
-	printf("esce parse_space\n");
 }
 
 int	count_tabs(char *str)
@@ -180,22 +176,17 @@ void convert_tab_space(t_game *game)
 	int y;
 
 	y = 0;
-    printf("entra\n");
-	printf("map_len:%d\n", game->map_len);
 	while(game->map[y])
 	{
 		game->map[y] = replace_tab_with_spaces(game->map[y]);
 		y++;
 	}
-    printf("esce\n");
 }
 
 int parse_map(t_game *game)
 {
-    printf("entra su parse_map\n");   
 	convert_tab_space(game);
 	check_frame(game);
-	parse_space(game);
-    printf("esce su parse_map\n");   
+	parse_space(game);   
 	return 0;
 }
