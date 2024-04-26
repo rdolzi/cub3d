@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:50:28 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 02:32:50 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 02:40:27 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 // descrizione menu
 // grandezza window diversa per mac e linux
 // versione intra senza file .txt, gitignore
-// aggiungere mappe, xpm
+// aggiungere mappe, xpm 
 
 void build_game(t_game *game)
 {
