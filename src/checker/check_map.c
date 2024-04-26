@@ -6,13 +6,14 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 16:56:47 by flaviobiond       #+#    #+#             */
-/*   Updated: 2024/04/26 00:16:16 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 02:19:31 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
 
-//controlla se i valori che non sono 1 sono contornati da spazi
+//controlla se i valori che non sono 1
+// siano contornati da spazi
 void	check_frame(t_game *game)
 {
 	int	y;

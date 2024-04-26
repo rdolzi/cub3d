@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:50:28 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 02:02:56 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 02:32:50 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,18 @@
 //valgrind --leak-check=full --track-origins=yes ./cub3d assets/maps/1.cub 
 
 //TODO:
-//menu
+// descrizione menu
 // grandezza window diversa per mac e linux
 // versione intra senza file .txt, gitignore
-// aggiungere mappe, xml
+// aggiungere mappe, xpm
 
 void build_game(t_game *game)
 {
     if (game->argc != 2)
-        clean_exit(game, throw_exception(ERR_ARGC, NULL, NULL));
+    {
+        ft_printstr_fd("Error\nargc != 2", 2);
+        exit(1);
+    }
     init_game(game);
     check_input(game, CUB, game->argv[1]);
     set_mlx(game);
