@@ -6,21 +6,18 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:51:47 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/21 01:16:48 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/04/26 02:35:39 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../../include/cube.h"
 
-// Handling of img is done using ROW-MAJOR ORDER: a tecnique that flatten
-// a 2-dimensional representation (a grid) into a 1-dimensional array.
-// This is a common technique when dealing with images stored in memory.
-// for more information read description.txt file
-
-//todo: destroy walls
-
-
+// Handling of img is done using ROW-MAJOR ORDER
+// a tecnique that flatten a 2-dimensional
+// representation (a grid) into a 1-dimensional array.
+// This is a common technique when dealing with images
+// stored in memory. for more information read description.txt
 void	xpm_to_img(t_game *game, int cardinal)
 {
     t_img *img;
@@ -28,7 +25,7 @@ void	xpm_to_img(t_game *game, int cardinal)
     img = &game->walls[cardinal];
 	check_input(game, XPM, game->walls[cardinal].path);
 	img->img = mlx_xpm_file_to_image(game->mlx, img->path,
-			&img->width, &img->height); //?
+			&img->width, &img->height);
 	if (img->img == NULL)
 		clean_exit(game, throw_exception(SYSTEM_EXCEPTION, ERR_MLX, NULL));
 	img->addr = (int *)mlx_get_data_addr(img->img, &img->bpp,
@@ -41,7 +38,6 @@ int	*parse_xpm(t_game *game, int cardinal)
 	int		y;
     int		*row_major;
 	
-	printf(">>parse_xpm\n");
 	xpm_to_img(game, cardinal);
 	row_major = ft_calloc(1,
 			sizeof(*row_major) * TEXTURE_SIZE * TEXTURE_SIZE);
@@ -63,13 +59,13 @@ int	*parse_xpm(t_game *game, int cardinal)
 }
 
 
-// each game->textures array use row-major order to store and access img
-// throws exception if xpm path is not found
+// each game->textures array use row-major order
+// to store and access img throws exception
+// if xpm path is not found
 void parse_cardinal(t_game *game)
 {
     enum e_cardinal cardinal;
     
-	printf("entra in parse_cardinal\n");
     cardinal = NORTH;
     game->textures = ft_calloc(5, sizeof * game->textures);
     if (!game->textures)
@@ -80,5 +76,4 @@ void parse_cardinal(t_game *game)
        game->textures[cardinal] = parse_xpm(game, (int)cardinal);
         cardinal++;
     }
-	printf("esce in parse_cardinal\n");
 }
