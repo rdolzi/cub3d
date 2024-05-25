@@ -6,11 +6,33 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 16:01:51 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/05/25 16:03:46 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/05/25 19:01:13 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
+
+void	check_frame_exit_conditions(t_game *game, int y, int x)
+{
+	if (game->map[y - 1][x] == ' ' || game->map[y + 1][x] == ' '
+			|| game->map[y + 1][x + 1] == ' ' || game->map[y - 1][x
+			- 1] == ' ' || game->map[y + 1][x - 1] == ' '
+			|| game->map[y - 1][x + 1] == ' ')
+		clean_exit(game, throw_exception(MAP_EXCEPTION,
+				ERR_MAP_WALLS, NULL));
+	if (game->map[y - 1][x] == '\0' || game->map[y + 1][x] == '\0'
+			|| game->map[y + 1][x + 1] == '\0' || game->map[y - 1][x
+			- 1] == '\0' || game->map[y + 1][x - 1] == '\0'
+			|| game->map[y - 1][x + 1] == '\0')
+		clean_exit(game, throw_exception(MAP_EXCEPTION,
+				ERR_MAP_WALLS, NULL));
+	if (game->map[y - 1][x] == '\n' || game->map[y + 1][x] == '\n'
+			|| game->map[y + 1][x + 1] == '\n' || game->map[y - 1][x
+			- 1] == '\n' || game->map[y + 1][x - 1] == '\n'
+			|| game->map[y - 1][x + 1] == '\n')
+		clean_exit(game, throw_exception(MAP_EXCEPTION,
+				ERR_MAP_WALLS, NULL));
+}
 
 //controlla se i valori che non sono 1
 // siano contornati da spazi
@@ -27,24 +49,7 @@ void	check_frame(t_game *game)
 		{
 			if (ft_strchr("0NSWED", game->map[y][x]))
 			{
-				if (game->map[y - 1][x] == ' ' || game->map[y + 1][x] == ' '
-					|| game->map[y + 1][x + 1] == ' ' || game->map[y - 1][x
-					- 1] == ' ' || game->map[y + 1][x - 1] == ' '
-					|| game->map[y - 1][x + 1] == ' ')
-					clean_exit(game, throw_exception(MAP_EXCEPTION,
-							ERR_MAP_WALLS, NULL));
-				if (game->map[y - 1][x] == '\0' || game->map[y + 1][x] == '\0'
-					|| game->map[y + 1][x + 1] == '\0' || game->map[y - 1][x
-					- 1] == '\0' || game->map[y + 1][x - 1] == '\0'
-					|| game->map[y - 1][x + 1] == '\0')
-					clean_exit(game, throw_exception(MAP_EXCEPTION,
-							ERR_MAP_WALLS, NULL));
-				if (game->map[y - 1][x] == '\n' || game->map[y + 1][x] == '\n'
-					|| game->map[y + 1][x + 1] == '\n' || game->map[y - 1][x
-					- 1] == '\n' || game->map[y + 1][x - 1] == '\n'
-					|| game->map[y - 1][x + 1] == '\n')
-					clean_exit(game, throw_exception(MAP_EXCEPTION,
-							ERR_MAP_WALLS, NULL));
+				check_frame_exit_conditions(game, y, x);
 			}
 			x++;
 		}
