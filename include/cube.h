@@ -6,13 +6,10 @@
 /*   By: flaviobiondo <flaviobiondo@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2024/05/25 15:56:31 by rdolzi           ###   ########.fr       */
-=======
-/*   Updated: 2024/05/25 16:08:30 by flaviobiond      ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Updated: 2024/05/25 16:13:17 by flaviobiond      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUBE_H
 # define CUBE_H
