@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transfer_info_file.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flaviobiondo <flaviobiondo@student.42.f    +#+  +:+       +#+        */
+/*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:58:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/05/25 16:01:11 by flaviobiond      ###   ########.fr       */
+/*   Updated: 2024/05/25 23:29:58 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	insert_map(t_game *game, int idx)
 	game->map_transferred = 1;
 	game->map = (char **)ft_calloc(game->n_lines_file - idx + 1,
 			sizeof(char *));
-	printf("game->n_lines_file - idx:%d\n", game->n_lines_file - idx + 1);
 	if (game->map == NULL)
 		clean_exit(game, throw_exception(SYSTEM_EXCEPTION, ERR_MALLOC, NULL));
 	while (idx < game->n_lines_file)

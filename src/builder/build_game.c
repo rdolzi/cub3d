@@ -6,17 +6,11 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 00:12:41 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/05/25 15:15:08 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/05/25 23:30:56 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
-
-// print the commands needed to play the game
-void	display_menu(void)
-{
-	write(1, "menu..\n", 7);
-}
 
 // MLX CONFIGURATION
 // init mlx && win

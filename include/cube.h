@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/05/25 19:42:09 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/05/25 23:30:47 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,6 @@ char	*replace_tabs(char *str, int count);
 //--build_game.c
 void	set_mlx(t_game *game);
 void	parse_game(t_game *game);
-void	display_menu(void);
 //--parse_cardinal.c
 void	parse_cardinal(t_game *game);
 //--parse_color.c
