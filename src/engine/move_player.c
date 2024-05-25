@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 23:21:32 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/05/25 15:41:30 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/05/25 18:34:45 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ int	move_player(t_game *game, int x, int y)
 	p = &game->player;
 	if (p->move.x == 1 || p->move.x == -1)
 	{
-		new_x = p->position.x + (p->direction.y * x) * 0.05;
-		new_y = p->position.y + (p->direction.x * y) * 0.05;
+		new_x = p->position.x + (p->direction.y * x) * 0.15;
+		new_y = p->position.y + (p->direction.x * y) * 0.15;
 	}
 	else
 	{
-		new_x = p->position.x + (p->direction.x * x) * 0.05;
-		new_y = p->position.y + (p->direction.y * y) * 0.05;
+		new_x = p->position.x + (p->direction.x * x) * 0.15;
+		new_y = p->position.y + (p->direction.y * y) * 0.15;
 	}
 	if (is_valid(game, new_x, new_y))
 	{

@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flaviobiondo <flaviobiondo@student.42.f    +#+  +:+       +#+        */
+/*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/05/25 16:24:51 by flaviobiond      ###   ########.fr       */
+/*   Updated: 2024/05/25 18:39:14 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CUBE_H
 # define CUBE_H
@@ -210,6 +209,9 @@ void	parse_cardinal(t_game *game);
 void	parse_color(t_game *game);
 //--parse_player.c
 void	parse_player(t_game *game);
+void	convert_in_hexadecimal(t_game *game, int color);
+int		*get_rgb(t_game *game, int color);
+int		is_valid_rgb(t_game *game, int *rgb);
 
 //ENGINE
 //--key_bind.c

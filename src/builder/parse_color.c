@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 02:11:15 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/05/25 15:26:39 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/05/25 18:30:22 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,35 +81,6 @@ int	*get_rgb(t_game *game, int color)
 		clean_exit(game, throw_exception(MAP_EXCEPTION, ERR_MAP_COLOR, NULL));
 	}
 	return (char_matrix_to_int(game, mat));
-}
-
-void	convert_rgb_to_hex(t_game *game, int color, int *rgb)
-{
-	int				r;
-	int				g;
-	int				b;
-
-	r = rgb[0];
-	g = rgb[1];
-	b = rgb[2];
-	game->type[color].hex = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
-}
-
-// fa lo split del path:
-//  - controlla che siano 3 int(atoi)
-//  - li setta in array
-// controlla che siano rgb validi ovvero da 0 a 255
-// converte rgb in hexadecimal
-void	convert_in_hexadecimal(t_game *game, int color)
-{
-	int	*rgb;
-
-	rgb = get_rgb(game, color);
-	if (is_valid_rgb(game, rgb))
-		convert_rgb_to_hex(game, color, rgb);
-	else
-		clean_exit(game, throw_exception(MAP_EXCEPTION, ERR_MAP_COLOR, NULL));
-	free(rgb);
 }
 
 void	parse_color(t_game *game)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_algorithm.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flaviobiondo <flaviobiondo@student.42.f    +#+  +:+       +#+        */
+/*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:17:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/05/25 15:27:15 by flaviobiond      ###   ########.fr       */
+/*   Updated: 2024/05/25 18:44:59 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,13 @@ void	compute_wall_line_height(t_game *game)
 	ray->wall_x -= floor(ray->wall_x);
 }
 
+void	set_pix(t_game *game, t_ray	*ray)
+{
+	game->pix_step = 1.0 * TEXTURE_SIZE / ray->line_height;
+	game->pix_pos = (ray->draw_start - WIN_HEIGHT / 2
+			+ ray->line_height / 2) * game->pix_step;
+}
+
 void	update_pixels(t_game *game, int column)
 {
 	t_ray	*ray;
@@ -104,9 +111,7 @@ void	update_pixels(t_game *game, int column)
 	if (((ray->side == EAST || ray->side == WEST) && ray->direction.x < 0)
 		|| ((ray->side == SOUTH || ray->side == NORTH) && ray->direction.y > 0))
 		x = TEXTURE_SIZE - x - 1;
-	game->pix_step = 1.0 * TEXTURE_SIZE / ray->line_height;
-	game->pix_pos = (ray->draw_start - WIN_HEIGHT / 2
-			+ ray->line_height / 2) * game->pix_step;
+	set_pix(game, ray);
 	y = ray->draw_start;
 	while (y < ray->draw_end)
 	{
