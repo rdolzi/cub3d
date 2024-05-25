@@ -6,145 +6,144 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 04:09:31 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/05/25 15:46:24 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBE_H
 # define CUBE_H
 
-#include <math.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <stdbool.h>
-#include <string.h>
-#include "./error.h"
-#include "./get_next_line.h"
-#define WIN_HEIGHT 960
-#define WIN_WIDTH 1280
-#define TEXTURE_SIZE 64
+# include <math.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <stdbool.h>
+# include <string.h>
+# include "./error.h"
+# include "./get_next_line.h"
+# define WIN_HEIGHT 960
+# define WIN_WIDTH 1280
+# define TEXTURE_SIZE 64
 
-#define EXIT_SUCCESS 0
-#define EXIT_FAILURE 1
-#define DEBUG 1
+# define EXIT_SUCCESS 0
+# define EXIT_FAILURE 1
+# define DEBUG 1
 
-#if defined(__APPLE__)
-# include "../mlx_mac/mlx.h"
-#define ESC 53
-#define W 13
-#define A 0
-#define S 1
-#define D 2
-#define UP 126
-#define DOWN 125
-#define LEFT 123
-#define RIGHT 124
-#elif defined(__linux__) || defined(__gnu_linux__)
-# include "../mlx_linux/mlx.h"
-#define ESC 65307
-#define W 119
-#define A 97
-#define S 115
-#define D 100
-#define UP 65362
-#define DOWN 65364
-#define LEFT 65361
-#define RIGHT 65363
-#endif
+# if defined(__APPLE__)
+#  include "../mlx_mac/mlx.h"
+#  define ESC 53
+#  define W 13
+#  define A 0
+#  define S 1
+#  define D 2
+#  define UP 126
+#  define DOWN 125
+#  define LEFT 123
+#  define RIGHT 124
+# elif defined(__linux__) || defined(__gnu_linux__)
+#  include "../mlx_linux/mlx.h"
+#  define ESC 65307
+#  define W 119
+#  define A 97
+#  define S 115
+#  define D 100
+#  define UP 65362
+#  define DOWN 65364
+#  define LEFT 65361
+#  define RIGHT 65363
+# endif
 
 enum e_cardinal
 {
-    NORTH = 0,
-    SOUTH = 1,
-    EAST = 2,
-    WEST = 3
+	NORTH = 0,
+	SOUTH = 1,
+	EAST = 2,
+	WEST = 3
 };
 
 enum e_color
 {
-    FLOOR = 0,
-    CEALING = 1
+	FLOOR = 0,
+	CEALING = 1
 };
 
 typedef struct s_coordinate
 {
-    double x;
-    double y;
-}   t_coordinate;
+	double	x;
+	double	y;
+}	t_coordinate;
 
 typedef struct s_img
 {
-    char *path;
-    void *img;
-    int *addr;
-    int bpp;
-    int line_length;
-    int endian;
-    int		width;
+	char	*path;
+	void	*img;
+	int		*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+	int		width;
 	int		height;
-} t_img;
+}	t_img;
 
 typedef struct s_ray
 {
-    t_coordinate direction;
-    t_coordinate player_pos;
-    t_coordinate step;
-    t_coordinate side_distance;
-    t_coordinate delta_distance;
-    int cardinal;
-    double ndc;
-    int side;
-    double wall_dist;
-    int wall_x;
-    int line_height;
-    int draw_start;
-    int draw_end;
-    double s;
-    double pos;
-} t_ray;
+	t_coordinate	direction;
+	t_coordinate	player_pos;
+	t_coordinate	step;
+	t_coordinate	side_distance;
+	t_coordinate	delta_distance;
+	int				cardinal;
+	double			ndc;
+	int				side;
+	double			wall_dist;
+	int				wall_x;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	double			s;
+	double			pos;
+}	t_ray;
 
 typedef struct s_player
 {
-    char dir;
-    double     rotate;
-    t_coordinate position;
-    t_coordinate direction;
-    t_coordinate cam_plane;
-    t_coordinate move;
+	char			dir;
+	double			rotate;
+	t_coordinate	position;
+	t_coordinate	direction;
+	t_coordinate	cam_plane;
+	t_coordinate	move;
 
-} t_player;
+}	t_player;
 
 typedef struct s_color
 {
-    char *path;
-    unsigned long hex;
-    
-} t_color;
+	char			*path;
+	unsigned long	hex;
+}	t_color;
 
 typedef struct s_game
 {
-    int     argc;
-    char    **argv;
-    void    *mlx;
-    void    *mlx_win;
-    int     win_height;
-    int     win_width;
-    char    **map;
-    int     map_len;
-    long    old_time;
-    int     fps;
-    char     **raw_file;
-    int     n_lines_file;
-    int     map_transferred;
-    char    *path;
-    double  pix_step;
-    double  pix_pos;
-    int     **pixels;
-    int     **textures;
-    t_ray ray;
-    t_player player;
-    t_img   walls[4];
-    t_color type[2];
+	int		argc;
+	char	**argv;
+	void	*mlx;
+	void    *mlx_win;
+	int     win_height;
+	int     win_width;
+	char    **map;
+	int     map_len;
+	long    old_time;
+	int     fps;
+	char     **raw_file;
+	int     n_lines_file;
+	int     map_transferred;
+	char    *path;
+	double  pix_step;
+	double  pix_pos;
+	int     **pixels;
+	int     **textures;
+	t_ray ray;
+	t_player player;
+	t_img   walls[4];
+	t_color type[2];
 } t_game;
 
 //UTILS
