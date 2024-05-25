@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:47:57 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/05/25 15:37:39 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/05/25 19:42:32 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,31 @@ void	count_file_lines(t_game *game)
 	}
 	close(fd);
 	free(str);
+}
+
+char	*replace_tabs(char *str, int count)
+{
+	char	*result;
+	int		j;
+	int		i;
+
+	result = (char *)malloc(count + 1);
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] == '\t')
+		{
+			result[j++] = ' ';
+			result[j++] = ' ';
+			result[j++] = ' ';
+			result[j++] = ' ';
+		}
+		else
+			result[j++] = str[i];
+		i++;
+	}
+	result[j] = '\0';
+	free(str);
+	return (result);
 }

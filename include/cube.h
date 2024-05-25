@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/05/25 18:39:14 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/05/25 19:42:09 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,7 @@ int		parse_map(t_game *game);
 int		check_wall(t_game *game);
 char	*replace_tab_with_spaces(char *str);
 void	parse_space(t_game *game);
+char	*replace_tabs(char *str, int count);
 
 //BUILDER
 //--build_game.c

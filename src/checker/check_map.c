@@ -6,7 +6,7 @@
 /*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 16:56:47 by flaviobiond       #+#    #+#             */
-/*   Updated: 2024/05/25 16:04:01 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/05/25 19:42:40 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ void	check_double_p(t_game *game, int x, int y, int *counter)
 				ERR_PLAYER_DUPLICATE, NULL));
 }
 
+void	check(t_game *game, int y, int x, int *c)
+{
+	if (ft_strchr("10NSWED", game->map[y][x]))
+		check_double_p(game, x, y, c);
+	else if (game->map[y][x] >= 9 && game->map[y][x] <= 13)
+			game->map[y][x] = '1';
+	else if (game->map[y][x] == ' ')
+			game->map[y][x] = '1';
+	else if (!ft_strchr("10NSWED \n", game->map[y][x]))
+		clean_exit(game, throw_exception(MAP_EXCEPTION,
+				ERR_INVALID_CHAR, NULL));
+}
+
 //E TRASFORMA gli spazi in K
 //checka la presenza dei soli caratterri "1 0 N S W E 32 \n" nella mappa
 void	parse_space(t_game *game)
@@ -44,15 +57,7 @@ void	parse_space(t_game *game)
 		x = 0;
 		while (x < (int) ft_strlen(game->map[y]))
 		{
-			if (ft_strchr("10NSWED", game->map[y][x]))
-				check_double_p(game, x, y, &c);
-			else if (game->map[y][x] >= 9 && game->map[y][x] <= 13)
-				game->map[y][x] = '1';
-			else if (game->map[y][x] == ' ')
-				game->map[y][x] = '1';
-			else if (!ft_strchr("10NSWED \n", game->map[y][x]))
-				clean_exit(game, throw_exception(MAP_EXCEPTION,
-						ERR_INVALID_CHAR, NULL));
+			check(game, y, x, &c);
 			x++;
 		}
 		y++;
@@ -78,33 +83,6 @@ int	count_tabs(char *str)
 		i++;
 	}
 	return (count);
-}
-
-char	*replace_tabs(char *str, int count)
-{
-	char	*result;
-	int		j;
-	int		i;
-
-	result = (char *)malloc(count + 1);
-	i = 0;
-	j = 0;
-	while (str[i])
-	{
-		if (str[i] == '\t')
-		{
-			result[j++] = ' ';
-			result[j++] = ' ';
-			result[j++] = ' ';
-			result[j++] = ' ';
-		}
-		else
-			result[j++] = str[i];
-		i++;
-	}
-	result[j] = '\0';
-	free(str);
-	return (result);
 }
 
 char	*replace_tab_with_spaces(char *str)
