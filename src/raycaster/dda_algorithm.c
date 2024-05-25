@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   dda_algorithm.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flaviobiondo <flaviobiondo@student.42.f    +#+  +:+       +#+        */
+/*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 03:50:26 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/05/25 15:33:51 by flaviobiond      ###   ########.fr       */
+/*   Updated: 2024/05/25 19:51:18 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
+
+void	norm(t_ray *r, t_player *p)
+{
+	if (r->direction.y < 0)
+	{
+		r->step.y = -1;
+		r->side_distance.y = (p->position.y - r->player_pos.y)
+			* r->delta_distance.y;
+	}
+	else
+	{
+		r->step.y = 1;
+		r->side_distance.y = (r->player_pos.y + 1.0 - p->position.y)
+			* r->delta_distance.y;
+	}
+}
 
 // initial set up dda
 void	set_step_and_side_distance(t_game *game)
@@ -32,18 +48,7 @@ void	set_step_and_side_distance(t_game *game)
 		r->side_distance.x = (r->player_pos.x + 1.0 - p->position.x)
 			* r->delta_distance.x;
 	}
-	if (r->direction.y < 0)
-	{
-		r->step.y = -1;
-		r->side_distance.y = (p->position.y - r->player_pos.y)
-			* r->delta_distance.y;
-	}
-	else
-	{
-		r->step.y = 1;
-		r->side_distance.y = (r->player_pos.y + 1.0 - p->position.y)
-			* r->delta_distance.y;
-	}
+	norm(r, p);
 }
 
 void	update_ray_position_to_next_wall(t_game *game)
