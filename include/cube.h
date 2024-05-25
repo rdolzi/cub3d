@@ -6,7 +6,7 @@
 /*   By: flaviobiondo <flaviobiondo@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:52:12 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/05/25 16:13:17 by flaviobiond      ###   ########.fr       */
+/*   Updated: 2024/05/25 16:24:51 by flaviobiond      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,9 @@ void	init_image(t_img *image);
 void	init_ray(t_game *game);
 //--transfer_info_file.c
 void	transfer_info_file(t_game *game);
+void	insert_map(t_game *game, int idx);
+void	insert_cardinal(t_game *game, int cardinal, char *str);
+void	insert_color(t_game *game, int type_c, char *str);
 
 //RAYCASTER
 //--render.c
@@ -192,6 +195,9 @@ void	count_file_lines(t_game *game);
 void	read_file(t_game *game);
 void	check_input(t_game *game, char *format, char *path);
 int		parse_map(t_game *game);
+int		check_wall(t_game *game);
+char	*replace_tab_with_spaces(char *str);
+void	parse_space(t_game *game);
 
 //BUILDER
 //--build_game.c
