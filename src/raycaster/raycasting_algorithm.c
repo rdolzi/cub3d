@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_algorithm.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: flaviobiondo <flaviobiondo@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:17:31 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 01:58:55 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/05/25 15:27:15 by flaviobiond      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,14 @@
  * @param game Pointer to the game structure containing
  *             player and ray information.
  */
-void initialize_raycasting_data(t_game *game, int column)
+void	initialize_raycasting_data(t_game *game, int column)
 {
-    t_ray *ray;
-    t_player *player;
+	t_ray		*ray;
+	t_player	*player;
 
-    init_ray(game);
-    ray = &game->ray;
-    player = &game->player;
-
+	init_ray(game);
+	ray = &game->ray;
+	player = &game->player;
 	ray->ndc = 2 * column / (double) WIN_WIDTH - 1;
 	ray->direction.x = player->direction.x + player->cam_plane.x * ray->ndc;
 	ray->direction.y = player->direction.y + player->cam_plane.y * ray->ndc;
@@ -67,40 +66,40 @@ void initialize_raycasting_data(t_game *game, int column)
 // Calculate draw end position
 // Adjust draw end if it's outside the screen boundaries
 // set wall_x
-void compute_wall_line_height(t_game *game)
+void	compute_wall_line_height(t_game *game)
 {
-    t_ray *ray;
-    t_player *player;
+	t_ray		*ray;
+	t_player	*player;
 
-    ray = &game->ray;
-    player = &game->player;
-    if (ray->side == EAST || ray->side == WEST)
-        ray->wall_dist = ray->side_distance.x - ray->delta_distance.x;
-    else
-        ray->wall_dist = ray->side_distance.y - ray->delta_distance.y;
-    ray->line_height = WIN_HEIGHT / ray->wall_dist;
-    ray->draw_start = -ray->line_height / 2 + WIN_HEIGHT / 2;
-    if (ray->draw_start <= 0)
-        ray->draw_start = 0;
-    ray->draw_end = ray->line_height / 2 + WIN_HEIGHT / 2;
-    if (ray->draw_end >= WIN_HEIGHT)
-        ray->draw_end = WIN_HEIGHT - 1;
-    if (ray->side == WEST || ray->side == EAST)
+	ray = &game->ray;
+	player = &game->player;
+	if (ray->side == EAST || ray->side == WEST)
+		ray->wall_dist = ray->side_distance.x - ray->delta_distance.x;
+	else
+		ray->wall_dist = ray->side_distance.y - ray->delta_distance.y;
+	ray->line_height = WIN_HEIGHT / ray->wall_dist;
+	ray->draw_start = -ray->line_height / 2 + WIN_HEIGHT / 2;
+	if (ray->draw_start <= 0)
+		ray->draw_start = 0;
+	ray->draw_end = ray->line_height / 2 + WIN_HEIGHT / 2;
+	if (ray->draw_end >= WIN_HEIGHT)
+		ray->draw_end = WIN_HEIGHT - 1;
+	if (ray->side == WEST || ray->side == EAST)
 		ray->wall_x = player->position.y + ray->wall_dist * ray->direction.y;
 	else
 		ray->wall_x = player->position.x + ray->wall_dist * ray->direction.x;
 	ray->wall_x -= floor(ray->wall_x);
 }
 
-void update_pixels(t_game *game, int column)
+void	update_pixels(t_game *game, int column)
 {
-    t_ray *ray;
-    int         x;
-    int			y;
-    int         y1;
-    int			color;
-    
-    ray = &game->ray;
+	t_ray	*ray;
+	int		x;
+	int		y;
+	int		y1;
+	int		color;
+
+	ray = &game->ray;
 	x = (int)(ray->wall_x * TEXTURE_SIZE);
 	if (((ray->side == EAST || ray->side == WEST) && ray->direction.x < 0)
 		|| ((ray->side == SOUTH || ray->side == NORTH) && ray->direction.y > 0))
@@ -117,7 +116,7 @@ void update_pixels(t_game *game, int column)
 		if (ray->side == NORTH || ray->side == EAST)
 			color = (color >> 1) & 8355711;
 		if (color > 0)
-            game->pixels[y][column] = color;
+			game->pixels[y][column] = color;
 		y++;
 	}
 }
@@ -133,18 +132,18 @@ void update_pixels(t_game *game, int column)
  * @param game Pointer to the game data structure containing
  *             rendering information.
  */
-void raycasting(t_game *game)
+void	raycasting(t_game *game)
 {
-    int column;
+	int	column;
 
-    column = 0;
-    while (column < game->win_width)
-    {
-        initialize_raycasting_data(game, column);
-        set_step_and_side_distance(game);
-        perform_digital_differential_analysis(game);
-        compute_wall_line_height(game);
-        update_pixels(game, column);
-        column++;
-    }
+	column = 0;
+	while (column < game->win_width)
+	{
+		initialize_raycasting_data(game, column);
+		set_step_and_side_distance(game);
+		perform_digital_differential_analysis(game);
+		compute_wall_line_height(game);
+		update_pixels(game, column);
+		column++;
+	}
 }

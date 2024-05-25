@@ -3,68 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   dda_algorithm.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: flaviobiondo <flaviobiondo@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 03:50:26 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 01:49:47 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/05/25 15:33:51 by flaviobiond      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
 
 // initial set up dda
-void set_step_and_side_distance(t_game *game)
+void	set_step_and_side_distance(t_game *game)
 {
-    t_ray *ray;
-    t_player *p;
+	t_ray		*r;
+	t_player	*p;
 
-    ray = &game->ray;
-    p = &game->player;
-    if (ray->direction.x < 0)
+	r = &game->ray;
+	p = &game->player;
+	if (r->direction.x < 0)
 	{
-		ray->step.x = -1;
-		ray->side_distance.x = (p->position.x - ray->player_pos.x) * ray->delta_distance.x;
+		r->step.x = -1;
+		r->side_distance.x = (p->position.x - r->player_pos.x)
+			* r->delta_distance.x;
 	}
 	else
 	{
-		ray->step.x = 1;
-		ray->side_distance.x = (ray->player_pos.x + 1.0 - p->position.x) * ray->delta_distance.x;
+		r->step.x = 1;
+		r->side_distance.x = (r->player_pos.x + 1.0 - p->position.x)
+			* r->delta_distance.x;
 	}
-	if (ray->direction.y < 0)
+	if (r->direction.y < 0)
 	{
-		ray->step.y = -1;
-		ray->side_distance.y = (p->position.y - ray->player_pos.y) * ray->delta_distance.y;
+		r->step.y = -1;
+		r->side_distance.y = (p->position.y - r->player_pos.y)
+			* r->delta_distance.y;
 	}
 	else
 	{
-		ray->step.y = 1;
-		ray->side_distance.y = (ray->player_pos.y + 1.0 - p->position.y) * ray->delta_distance.y;
+		r->step.y = 1;
+		r->side_distance.y = (r->player_pos.y + 1.0 - p->position.y)
+			* r->delta_distance.y;
 	}
 }
 
-void update_ray_position_to_next_wall(t_game *game)
+void	update_ray_position_to_next_wall(t_game *game)
 {
-    t_ray *ray;
+	t_ray	*ray;
 
-    ray = &game->ray;
-    if (ray->side_distance.x < ray->side_distance.y)
-    {
-        ray->side_distance.x += ray->delta_distance.x;
-        ray->player_pos.x += ray->step.x;
-        if (ray->step.x == -1)
-            ray->side = EAST;
-        else
-            ray->side = WEST;
-    }
-    else
-    {
-        ray->side_distance.y += ray->delta_distance.y;
-        ray->player_pos.y += ray->step.y;
-        if (ray->step.y == -1)
-            ray->side = SOUTH;
-        else
-            ray->side = NORTH;
-    }
+	ray = &game->ray;
+	if (ray->side_distance.x < ray->side_distance.y)
+	{
+		ray->side_distance.x += ray->delta_distance.x;
+		ray->player_pos.x += ray->step.x;
+		if (ray->step.x == -1)
+			ray->side = EAST;
+		else
+			ray->side = WEST;
+	}
+	else
+	{
+		ray->side_distance.y += ray->delta_distance.y;
+		ray->player_pos.y += ray->step.y;
+		if (ray->step.y == -1)
+			ray->side = SOUTH;
+		else
+			ray->side = NORTH;
+	}
 }
 
 /**
@@ -83,22 +87,23 @@ void update_ray_position_to_next_wall(t_game *game)
  * @param game Pointer to the game data structure containing
  * raycasting and player information.
  */
-void perform_digital_differential_analysis(t_game *game)
+void	perform_digital_differential_analysis(t_game *game)
 {
-    int hit;
-    t_ray *ray;
+	int		hit;
+	t_ray	*ray;
 
-    hit = 0;
-    ray = &game->ray;
-    while (hit == 0)
+	hit = 0;
+	ray = &game->ray;
+	while (hit == 0)
 	{
 		update_ray_position_to_next_wall(game);
-        if (ray->player_pos.y < 0.25 
-            || ray->player_pos.x < 0.25
-            || ray->player_pos.y > game->win_height - 1.25
-            || ray->player_pos.x > game->win_width - 1.25)
-            hit = 1;
-        else if (game->map[(int)ray->player_pos.y][(int)ray->player_pos.x] == '1')
-            hit = 1;
+		if (ray->player_pos.y < 0.25
+			|| ray->player_pos.x < 0.25
+			|| ray->player_pos.y > game->win_height - 1.25
+			|| ray->player_pos.x > game->win_width - 1.25)
+			hit = 1;
+		else if (game->map[(int)ray->player_pos.y]
+			[(int)ray->player_pos.x] == '1')
+			hit = 1;
 	}
 }

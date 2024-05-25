@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: flaviobiondo <flaviobiondo@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:50:28 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 02:40:27 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/05/25 15:12:16 by flaviobiond      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,40 +20,40 @@
 // versione intra senza file .txt, gitignore
 // aggiungere mappe, xpm 
 
-void build_game(t_game *game)
+void	build_game(t_game *game)
 {
-    if (game->argc != 2)
-    {
-        ft_printstr_fd("Error\nargc != 2", 2);
-        exit(1);
-    }
-    init_game(game);
-    check_input(game, CUB, game->argv[1]);
-    set_mlx(game);
-    transfer_info_file(game);
-    parse_game(game);
-    key_bind(game);
+	if (game->argc != 2)
+	{
+		ft_printstr_fd("Error\nargc != 2", 2);
+		exit(1);
+	}
+	init_game(game);
+	check_input(game, CUB, game->argv[1]);
+	set_mlx(game);
+	transfer_info_file(game);
+	parse_game(game);
+	key_bind(game);
 }
 
-void start_game(t_game *game)
+void	start_game(t_game *game)
 {
-    display_menu();
-    render_screen(game);
+	display_menu();
+	render_screen(game);
 }
 
-void run_game(t_game *game)
+void	run_game(t_game *game)
 {
-    mlx_loop_hook(game->mlx, render, game);
-    mlx_loop(game->mlx);
+	mlx_loop_hook(game->mlx, render, game);
+	mlx_loop(game->mlx);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_game game;
-    
-    game.argc = argc;
-    game.argv = argv;
-    build_game(&game);
-    start_game(&game);
-    run_game(&game);
+	t_game	game;
+
+	game.argc = argc;
+	game.argv = argv;
+	build_game(&game);
+	start_game(&game);
+	run_game(&game);
 }

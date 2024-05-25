@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: flaviobiondo <flaviobiondo@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 20:13:58 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 01:07:55 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/05/25 15:17:14 by flaviobiond      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_substr(char *s, int start, size_t len)
 {
 	char	*substr;
-	size_t		j;
+	size_t	j;
 
 	if (!s)
 		return (NULL);
@@ -24,7 +24,7 @@ char	*ft_substr(char *s, int start, size_t len)
 		len = ft_strlen(s);
 	if ((size_t) start >= ft_strlen(s))
 		return (ft_strdup(""));
-	substr = (char *)ft_calloc((len + 1) , sizeof(char));
+	substr = (char *)ft_calloc((len + 1), sizeof(char));
 	if (!substr)
 		return (NULL);
 	while (j < len)
@@ -62,10 +62,10 @@ void	*free_all(char **s)
 
 	i = 0;
 	while (s[i])
-    {
-        free(s[i]);
-        i++;
-    }	
+	{
+		free(s[i]);
+		i++;
+	}	
 	free(s);
 	return (NULL);
 }
@@ -85,7 +85,7 @@ char	**ft_split(char *s, char c)
 	if (!s)
 		return (NULL);
 	i = 0;
-	ret = ft_calloc(sizeof(char *) , (get_word(s, c) + 1));
+	ret = ft_calloc(sizeof(char *), (get_word(s, c) + 1));
 	if (!ret)
 		return (NULL);
 	while (*s)

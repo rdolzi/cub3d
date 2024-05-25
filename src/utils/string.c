@@ -3,38 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: flaviobiondo <flaviobiondo@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 10:46:07 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 01:45:42 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/05/25 15:14:32 by flaviobiond      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cube.h"
 
-
 // torna 0 se uguali, 1 se diversi
 //  se una delle due stringhe è piu corta
 // della size n ritorna 1 e non 0
-int ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-    size_t i;
-    unsigned char *us1;
-    unsigned char *us2;
+	size_t			i;
+	unsigned char	*us1;
+	unsigned char	*us2;
 
-    i = 0;
-    us1 = (unsigned char *)s1;
-    us2 = (unsigned char *)s2;
-    while ((us1[i] != '\0' || us2[i] != '\0') && i < n)
-    {
-        if (us1[i] == us2[i])
-            i++;
-        else
-            return (us1[i] - us2[i]);
-    }
-    return (0);
+	i = 0;
+	us1 = (unsigned char *)s1;
+	us2 = (unsigned char *)s2;
+	while ((us1[i] != '\0' || us2[i] != '\0') && i < n)
+	{
+		if (us1[i] == us2[i])
+			i++;
+		else
+			return (us1[i] - us2[i]);
+	}
+	return (0);
 }
-
 
 char	ft_strcmp(char *s1, char *s2)
 {
@@ -46,20 +44,20 @@ char	ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-char *ft_strchr(char *s, char ch)
+char	*ft_strchr(char *s, char ch)
 {
-    int slen;
-    int i;
+	int	slen;
+	int	i;
 
-    i = 0;
-    slen = ft_strlen(s);
-    while (i <= slen)
-    {
-        if (s[i] == ch)
-            return ((char *)&s[i]);
-        i++;
-    }
-    return (NULL);
+	i = 0;
+	slen = ft_strlen(s);
+	while (i <= slen)
+	{
+		if (s[i] == ch)
+			return ((char *)&s[i]);
+		i++;
+	}
+	return (NULL);
 }
 
 char	*ft_strdup(char *s1)

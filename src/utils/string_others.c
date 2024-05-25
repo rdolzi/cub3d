@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string_others.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: flaviobiondo <flaviobiondo@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 01:44:17 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/04/26 01:45:01 by rdolzi           ###   ########.fr       */
+/*   Updated: 2024/05/25 15:16:02 by flaviobiond      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,34 +41,34 @@ int	ft_atoi(const char *str)
 	return (j * segn);
 }
 
-int ft_isalpha(int c)
+int	ft_isalpha(int c)
 {
-    return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
 }
 
-int ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
-    return (c >= '0' && c <= '9');
+	return (c >= '0' && c <= '9');
 }
 
-int ft_isspace(int c)
+int	ft_isspace(int c)
 {
-    if (c == ' ' || c == '\n' || c == '\t' || c == '\v' || c == '\f' ||
-        c == '\r')
-        return (1);
-    return (0);
+	if (c == ' ' || c == '\n' || c == '\t' || c == '\v' || c == '\f'
+		|| c == '\r')
+		return (1);
+	return (0);
 }
 
-void ft_printstr_fd(char *str, int fd)
+void	ft_printstr_fd(char *str, int fd)
 {
-    int k;
+	int	k;
 
-    k = 0;
-    if (!str)
-        return;
-    while (str[k])
-    {
-        write(fd, &str[k], 1);
-        k++;
-    }
+	k = 0;
+	if (!str)
+		return ;
+	while (str[k])
+	{
+		write(fd, &str[k], 1);
+		k++;
+	}
 }
