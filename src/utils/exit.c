@@ -21,7 +21,7 @@ void	free_matrix(void **matrix)
 	{
 		free(matrix[i]);
 		i++;
-	}	
+	}
 	if (matrix)
 	{
 		free(matrix);

@@ -65,7 +65,7 @@ void	*free_all(char **s)
 	{
 		free(s[i]);
 		i++;
-	}	
+	}
 	free(s);
 	return (NULL);
 }

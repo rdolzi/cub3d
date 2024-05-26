@@ -32,9 +32,9 @@ void	check(t_game *game, int y, int x, int *c)
 	if (ft_strchr("10NSWED", game->map[y][x]))
 		check_double_p(game, x, y, c);
 	else if (game->map[y][x] >= 9 && game->map[y][x] <= 13)
-			game->map[y][x] = '1';
+		game->map[y][x] = '1';
 	else if (game->map[y][x] == ' ')
-			game->map[y][x] = '1';
+		game->map[y][x] = '1';
 	else if (!ft_strchr("10NSWED \n", game->map[y][x]))
 		clean_exit(game, throw_exception(MAP_EXCEPTION,
 				ERR_INVALID_CHAR, NULL));
