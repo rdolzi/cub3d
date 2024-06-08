@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flaviobiondo <flaviobiondo@student.42.f    +#+  +:+       +#+        */
+/*   By: rdolzi <rdolzi@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 23:41:09 by rdolzi            #+#    #+#             */
-/*   Updated: 2024/05/25 15:34:41 by flaviobiond      ###   ########.fr       */
+/*   Updated: 2024/06/08 11:25:04 by rdolzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	init_image(t_img *image)
 	image->bpp = 0;
 	image->line_length = 0;
 	image->endian = 0;
-	image->width = 0;
-	image->height = 0;
+	image->width = 64;
+	image->height = 64;
 }
 
 void	init_internal_structures(t_game *game)
