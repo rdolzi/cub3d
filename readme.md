@@ -29,16 +29,16 @@ Learn to manage user inputs and real-time events.
 
 
 
-42 School developed two version of MinlLibX: one for [macOS](https://github.com/dannywillems/minilibx-mac-osx) one for [Linux](https://github.com/42Paris/minilibx-linux)
+**Note:** 42 School developed two version of MinlLibX: one for [macOS](https://github.com/dannywillems/minilibx-mac-osx) one for [Linux](https://github.com/42Paris/minilibx-linux)
 
-Our project supports both MacOS and Linux!
+### Our project supports both MacOS and Linux!
 
-**Note:** The project evaluation was done on Linux (Ubuntu distro), so only the Linux library is required for the project.
+The project evaluation was done on Linux (Ubuntu distro), so only the Linux library is required for the project.
 However, we decided to support both OS because it allowed the team to work remotely with our personal PCs (MacBooks).
 For more information about the integration, take a look at the [Makefile](https://github.com/rdolzi/cub3d/blob/master/Makefile) for compilation and [cube.h](https://github.com/rdolzi/cub3d/blob/master/include/cube.h) for key value bindings.
 
 
-This project was made in collaboration with [fbiondo](https://github.com/fla0000000)
+
 
 
 
@@ -92,23 +92,23 @@ Go to assets/maps/1.cub files then follow this rules:
 You can have a look at the [subject](https://github.com/rdolzi/cub3d/blob/master/subject.pdf) for further details on how `.cub` files and project in general work.
 
 
-# FINAL GRADE : 110/100
-## Mandatory: 100/100
-## Bonus: 10/25
 
 
+## RESOURCES
 
-
-
-# RESOURCES
-
-## Raycasting:
+### Raycasting:
 By [lodev.org](https://lodev.org/cgtutor/raycasting.html)
 By [permadi.com](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/)
 By [3DSage, Youtube](https://www.youtube.com/watch?v=PC1RaETIx3Y)
 
-## MinLibX:
+### MinLibX:
 [How to draw a line](https://gontjarow.github.io/MiniLibX/mlx-tutorial-draw-line.html)
 [New image](https://gontjarow.github.io/MiniLibX/mlx_new_image.html)
 [Pixel drawing](https://aurelienbrabant.fr/blog/pixel-drawing-with-the-minilibx)
 [How to flatten a 2-dimensional array](https://github.com/keuhdall/images_example/blob/master/example.c)
+
+
+## FINAL GRADE : 110/100
+### Mandatory: 100/100 | Bonus: 10/25
+
+This project was made in collaboration with [fbiondo](https://github.com/fla0000000)
