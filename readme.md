@@ -23,7 +23,7 @@ MacOS/Linux:
 | `make clean` | Removes object files and other temporary files.           |
 | `make fclean`| Removes all generated files, including the executable.    |
 
-## Commands
+## Game Commands
 
 | KEY           | Action        |
 | ------------- |:-------------:|
