@@ -91,14 +91,14 @@ For more information about the integration, take a look at the [Makefile](https:
 ## RESOURCES
 
 ### Raycasting:
-By [lodev.org](https://lodev.org/cgtutor/raycasting.html)
-By [permadi.com](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/)
-By [3DSage, Youtube](https://www.youtube.com/watch?v=PC1RaETIx3Y)
+By [lodev.org](https://lodev.org/cgtutor/raycasting.html)  
+By [permadi.com](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/)  
+By [3DSage, Youtube](https://www.youtube.com/watch?v=PC1RaETIx3Y)  
 
 ### MinLibX:
-[How to draw a line](https://gontjarow.github.io/MiniLibX/mlx-tutorial-draw-line.html)
-[New image](https://gontjarow.github.io/MiniLibX/mlx_new_image.html)
-[Pixel drawing](https://aurelienbrabant.fr/blog/pixel-drawing-with-the-minilibx)
+[How to draw a line](https://gontjarow.github.io/MiniLibX/mlx-tutorial-draw-line.html)  
+[New image](https://gontjarow.github.io/MiniLibX/mlx_new_image.html)  
+[Pixel drawing](https://aurelienbrabant.fr/blog/pixel-drawing-with-the-minilibx)  
 [How to flatten a 2-dimensional array](https://github.com/keuhdall/images_example/blob/master/example.c)
 
 
