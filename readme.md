@@ -1,3 +1,5 @@
+**Note:** This project was made in collaboration with [fbiondo](https://github.com/fla0000000)
+
 # Cub3D 
 
 The ``Cub3D`` project is an introductory graphics programming assignment at 42 School, inspired by the classic game Wolfenstein 3D and requires ``C`` as programming language.
@@ -104,5 +106,3 @@ By [3DSage, Youtube](https://www.youtube.com/watch?v=PC1RaETIx3Y)
 
 ## FINAL GRADE : 110/100
 ### Mandatory: 100/100 | Bonus: 10/25
-
-This project was made in collaboration with [fbiondo](https://github.com/fla0000000)
