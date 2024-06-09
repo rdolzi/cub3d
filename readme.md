@@ -6,6 +6,7 @@ The ``Cub3D`` project is an introductory graphics programming assignment at 42 S
 The primary objective of the project is to create a basic 3D game engine using the raycasting technique to render a 3D world from a first-person perspective.
 Cub3D serves as a stepping stone to more advanced graphics and game development projects, providing hands-on experience in creating a simple yet functional 3D game engine from scratch.
 
+![](https://github.com/rdolzi/cub3d/blob/master/assets/github/compile.gif)
 
 
 ## Run Program:
@@ -15,6 +16,9 @@ MacOS/Linux:
 ```sh
     cd $HOME/Desktop && git clone https://github.com/rdolzi/cub3d.git && cd cub3d && make && ./cub3d assets/maps/1.cub
 ```
+
+
+![](https://github.com/rdolzi/cub3d/blob/master/assets/github/game.gif)
 
 ## Makefile Commands
 
